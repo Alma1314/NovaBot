@@ -2,19 +2,23 @@ from __future__ import annotations
 
 
 class AstrBotError(Exception):
-    """Base exception for all AstrBot errors."""
+    """Base exception for all AstrBot errors.
+    错误的基类"""
 
 
 class ProviderNotFoundError(AstrBotError):
-    """Raised when a specified provider is not found."""
+    """Raised when a specified provider is not found.
+    查不到指定的 LLM Provider 时抛出"""
 
 
 class EmptyModelOutputError(AstrBotError):
-    """Raised when the model response contains no usable assistant output."""
+    """Raised when the model response contains no usable assistant output.
+    LLM 返回空响应时抛出"""
 
 
 class KnowledgeBaseUploadError(AstrBotError):
-    """Raised when knowledge base upload fails with a user-facing message."""
+    """Raised when knowledge base upload fails with a user-facing message.
+    知识库上传失败时抛出"""
 
     def __init__(
         self,

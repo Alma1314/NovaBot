@@ -33,19 +33,13 @@ from astrbot.core.utils.runtime_env import is_packaged_desktop_runtime  # noqa: 
 sys.path.append(Path(__file__).parent.as_posix())
 
 logo_tmpl = r"""
-     ___           _______.___________..______      .______     ______   .___________.
-    /   \         /       |           ||   _  \     |   _  \   /  __  \  |           |
-   /  ^  \       |   (----`---|  |----`|  |_)  |    |  |_)  | |  |  |  | `---|  |----`
-  /  /_\  \       \   \       |  |     |      /     |   _  <  |  |  |  |     |  |
- /  _____  \  .----)   |      |  |     |  |\  \----.|  |_)  | |  `--'  |     |  |
-/__/     \__\ |_______/       |__|     | _| `._____||______/   \______/      |__|
-
+布林bot（猫猫特供版）
 """
 
 
 def check_env() -> None:
-    if not (sys.version_info.major == 3 and sys.version_info.minor >= 12):
-        logger.error("请使用 Python3.12+ 运行本项目。")
+    if not (sys.version_info.major == 3 and sys.version_info.minor >= 13):
+        logger.error("请使用 Python3.13+ 运行本项目。")
         exit()
 
     astrbot_root = get_astrbot_root()
