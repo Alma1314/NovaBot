@@ -36,10 +36,7 @@ from astrbot.core.utils.media_utils import convert_audio_to_wav
 
 from .tg_event import TelegramPlatformEvent
 
-if sys.version_info >= (3, 12):
-    from typing import override
-else:
-    from typing_extensions import override
+from typing import override
 
 
 @register_platform_adapter("telegram", "telegram 适配器")

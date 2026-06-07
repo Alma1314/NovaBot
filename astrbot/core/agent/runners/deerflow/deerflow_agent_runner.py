@@ -40,10 +40,7 @@ from .deerflow_stream_utils import (
     get_message_id,
 )
 
-if sys.version_info >= (3, 12):
-    from typing import override
-else:
-    from typing_extensions import override
+from typing import override
 
 
 class DeerFlowAgentRunner(BaseAgentRunner[TContext]):

@@ -31,10 +31,7 @@ from astrbot.core.utils.webhook_utils import log_webhook_info
 
 from .weixin_offacc_event import WeixinOfficialAccountPlatformEvent
 
-if sys.version_info >= (3, 12):
-    from typing import override
-else:
-    from typing_extensions import override
+from typing import override
 
 
 class WeixinOfficialAccountServer:

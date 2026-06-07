@@ -19,10 +19,7 @@ from ...run_context import ContextWrapper, TContext
 from ..base import AgentResponse, AgentState, BaseAgentRunner
 from .coze_api_client import CozeAPIClient
 
-if sys.version_info >= (3, 12):
-    from typing import override
-else:
-    from typing_extensions import override
+from typing import override
 
 
 class CozeAgentRunner(BaseAgentRunner[TContext]):

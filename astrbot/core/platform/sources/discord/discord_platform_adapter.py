@@ -27,10 +27,7 @@ from astrbot.core.star.star_handler import StarHandlerMetadata, star_handlers_re
 from .client import DiscordBotClient
 from .discord_platform_event import DiscordPlatformEvent
 
-if sys.version_info >= (3, 12):
-    from typing import override
-else:
-    from typing_extensions import override
+from typing import override
 
 
 # 注册平台适配器

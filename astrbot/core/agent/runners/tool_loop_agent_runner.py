@@ -64,10 +64,7 @@ from ..run_context import ContextWrapper, TContext
 from ..tool_executor import BaseFunctionToolExecutor
 from .base import AgentResponse, AgentState, BaseAgentRunner
 
-if sys.version_info >= (3, 12):
-    from typing import override
-else:
-    from typing_extensions import override
+from typing import override
 
 
 @dataclass(slots=True)

@@ -5,10 +5,7 @@ import discord
 
 from astrbot import logger
 
-if sys.version_info >= (3, 12):
-    from typing import override
-else:
-    from typing_extensions import override
+from typing import override
 
 
 # Discord Bot客户端

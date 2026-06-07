@@ -36,10 +36,7 @@ from .wecom_event import WecomPlatformEvent
 from .wecom_kf import WeChatKF
 from .wecom_kf_message import WeChatKFMessage
 
-if sys.version_info >= (3, 12):
-    from typing import override
-else:
-    from typing_extensions import override
+from typing import override
 
 
 def _extract_wecom_media_filename(disposition: str | None) -> str | None:
