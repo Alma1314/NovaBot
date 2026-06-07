@@ -10,7 +10,7 @@ export const useCommonStore = defineStore("common", {
 
     log_cache_max_len: 1000,
     startTime: -1,
-    astrbotVersion: "",
+    bulinbotVersion: "",
     dashboardVersion: "",
 
     pluginMarketData: [],
@@ -155,18 +155,18 @@ export const useCommonStore = defineStore("common", {
       this.startTime = res.data.data.start_time;
       return this.startTime;
     },
-    setAstrBotVersion(version, dashboardVersion = "") {
-      this.astrbotVersion = String(version || "").replace(/^v/i, "");
+    setBulinBotVersion(version, dashboardVersion = "") {
+      this.bulinbotVersion = String(version || "").replace(/^v/i, "");
       this.dashboardVersion = String(dashboardVersion || "");
     },
-    async fetchAstrBotVersion(force = false) {
-      if (!force && this.astrbotVersion) {
-        return this.astrbotVersion;
+    async fetchBulinBotVersion(force = false) {
+      if (!force && this.bulinbotVersion) {
+        return this.bulinbotVersion;
       }
       const res = await axios.get("/api/stat/version");
       const data = res.data?.data || {};
-      this.setAstrBotVersion(data.version, data.dashboard_version);
-      return this.astrbotVersion;
+      this.setBulinBotVersion(data.version, data.dashboard_version);
+      return this.bulinbotVersion;
     },
     getStartTime() {
       if (this.startTime !== -1) {
@@ -224,8 +224,8 @@ export const useCommonStore = defineStore("common", {
                   pluginData?.i18n && typeof pluginData.i18n === "object"
                     ? pluginData.i18n
                     : {},
-                astrbot_version: pluginData?.astrbot_version
-                  ? pluginData.astrbot_version
+                bulinbot_version: pluginData?.bulinbot_version
+                  ? pluginData.bulinbot_version
                   : "",
                 category: pluginData?.category ? pluginData.category : "",
                 support_platforms: Array.isArray(pluginData?.support_platforms)

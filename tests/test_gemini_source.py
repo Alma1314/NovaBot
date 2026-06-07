@@ -1,8 +1,8 @@
 import pytest
 
-from astrbot.core.exceptions import EmptyModelOutputError
-from astrbot.core.provider.entities import LLMResponse
-from astrbot.core.provider.sources.gemini_source import ProviderGoogleGenAI
+from bulinbot.core.exceptions import EmptyModelOutputError
+from bulinbot.core.provider.entities import LLMResponse
+from bulinbot.core.provider.sources.gemini_source import ProviderGoogleGenAI
 
 
 def test_gemini_empty_output_raises_empty_model_output_error():

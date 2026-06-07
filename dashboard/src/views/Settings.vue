@@ -60,7 +60,7 @@
             </v-list-item>
 
             <v-list-item :subtitle="tm('system.restart.subtitle')" :title="tm('system.restart.title')">
-                <v-btn style="margin-top: 16px;" color="error" @click="restartAstrBot">{{ tm('system.restart.button') }}</v-btn>
+                <v-btn style="margin-top: 16px;" color="error" @click="restartBulinBot">{{ tm('system.restart.button') }}</v-btn>
             </v-list-item>
 
             <v-list-item class="py-2">
@@ -82,7 +82,7 @@
                                     variant="text"
                                     class="ml-2"
                                     :aria-label="tm('apiKey.docsLink')"
-                                    href="https://docs.astrbot.app/dev/openapi.html"
+                                    href="https://docs.bulinbot.app/dev/openapi.html"
                                     target="_blank"
                                     rel="noopener noreferrer"
                                 >
@@ -235,7 +235,7 @@ import MigrationDialog from '@/components/shared/MigrationDialog.vue';
 import SidebarCustomizer from '@/components/shared/SidebarCustomizer.vue';
 import BackupDialog from '@/components/shared/BackupDialog.vue';
 import StorageCleanupPanel from '@/components/shared/StorageCleanupPanel.vue';
-import { restartAstrBot as restartAstrBotRuntime } from '@/utils/restartAstrBot';
+import { restartBulinBot as restartBulinBotRuntime } from '@/utils/restartBulinBot';
 import { copyToClipboard } from '@/utils/clipboard';
 import { useModuleI18n } from '@/i18n/composables';
 import { useTheme } from 'vuetify';
@@ -412,9 +412,9 @@ const deleteApiKey = async (keyId) => {
     }
 };
 
-const restartAstrBot = async () => {
+const restartBulinBot = async () => {
     try {
-        await restartAstrBotRuntime(wfr.value);
+        await restartBulinBotRuntime(wfr.value);
     } catch (error) {
         console.error(error);
     }

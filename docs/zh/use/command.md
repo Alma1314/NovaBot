@@ -1,6 +1,6 @@
 # 内置指令
 
-AstrBot 的指令通过插件机制注册。为了保持主程序轻量，当前只有少量基础指令随 AstrBot 主程序内置加载；更多管理类、扩展类指令已经迁移到独立插件中维护。
+BulinBot 的指令通过插件机制注册。为了保持主程序轻量，当前只有少量基础指令随 BulinBot 主程序内置加载；更多管理类、扩展类指令已经迁移到独立插件中维护。
 
 使用 `/help` 可以查看当前已经启用的指令。
 
@@ -10,15 +10,15 @@ AstrBot 的指令通过插件机制注册。为了保持主程序轻量，当前
 
 ## 主程序内置指令
 
-以下指令由 AstrBot 主程序自带，默认随 AstrBot 加载：
+以下指令由 BulinBot 主程序自带，默认随 BulinBot 加载：
 
-- `/help`：查看当前启用的指令和 AstrBot 版本信息。
+- `/help`：查看当前启用的指令和 BulinBot 版本信息。
 - `/sid`：查看当前消息来源信息，包括 UMO、用户 ID、平台 ID、消息类型和会话 ID。常用于配置管理员、白名单或路由规则。
 - `/name`：为当前 UMO（统一消息来源，即某个平台上的一个群聊或私聊会话）设置展示别名，让 WebUI 中的会话来源更容易识别。该指令需要管理员权限。
 - `/reset`：重置当前会话的 LLM 上下文。
 - `/stop`：停止当前会话中正在运行的 Agent 任务。
 - `/new`：创建并切换到一个新对话。
-- `/dashboard_update`：更新 AstrBot WebUI。该指令需要管理员权限。
+- `/dashboard_update`：更新 BulinBot WebUI。该指令需要管理员权限。
 - `/set`：设置当前会话变量，常用于 Dify、Coze、DashScope 等 Agent 执行器的输入变量。
 - `/unset`：移除当前会话变量。
 
@@ -29,7 +29,7 @@ AstrBot 的指令通过插件机制注册。为了保持主程序轻量，当前
 `/sid` 用于查看当前消息来源信息，主要输出：
 
 - `UMO`：当前消息来源的统一标识。它通常用于白名单、配置文件路由等按会话生效的配置。
-- `UID`：当前发送者的用户 ID。它通常用于添加 AstrBot 管理员。
+- `UID`：当前发送者的用户 ID。它通常用于添加 BulinBot 管理员。
 - `Bot ID`：当前机器人所在平台实例的 ID。
 - `Message Type`：消息类型，例如私聊或群聊。
 - `Session ID`：平台侧会话 ID。
@@ -46,7 +46,7 @@ AstrBot 的指令通过插件机制注册。为了保持主程序轻量，当前
 
 `/name` 用于给当前 UMO 设置一个更容易识别的展示别名。UMO 是 Unified Message Origin 的缩写，可以理解为“统一消息来源”：它用 `平台 ID:消息类型:会话 ID` 的形式标识一个具体的消息来源，例如某个 QQ 群、某个 Telegram 群，或某个平台上的一个私聊会话。
 
-原始 UMO 往往比较长，也不一定能直接看出它对应哪个群或哪个用户。设置 `/name` 后，AstrBot 会在 WebUI 的 UMO 列表、会话来源选择、定时任务投递目标、对话数据等位置优先展示这个别名，帮助管理员更快识别和选择目标会话，降低配置路由规则、Cron 投递目标或会话规则时选错来源的概率。
+原始 UMO 往往比较长，也不一定能直接看出它对应哪个群或哪个用户。设置 `/name` 后，BulinBot 会在 WebUI 的 UMO 列表、会话来源选择、定时任务投递目标、对话数据等位置优先展示这个别名，帮助管理员更快识别和选择目标会话，降低配置路由规则、Cron 投递目标或会话规则时选错来源的概率。
 
 `/name` 还会记录当前平台可识别的自动名称，例如群聊通常是群名，私聊通常是发送者昵称或发送者 ID。这样即使没有手动设置别名，WebUI 也可以尽量显示一个可读名称。
 
@@ -67,7 +67,7 @@ AstrBot 的指令通过插件机制注册。为了保持主程序轻量，当前
 
 `/reset` 用于重置当前会话的 LLM 上下文。
 
-对于 AstrBot 内置 Agent Runner，它会：
+对于 BulinBot 内置 Agent Runner，它会：
 
 - 停止当前会话中正在运行的任务。
 - 清空当前对话的上下文消息。
@@ -94,13 +94,13 @@ AstrBot 的指令通过插件机制注册。为了保持主程序轻量，当前
 对于内置 Agent Runner，`/stop` 会请求 Agent Runner 停止当前任务。  
 对于第三方 Agent Runner，例如 `dify`、`coze`、`dashscope`、`deerflow`，`/stop` 会直接停止当前会话中登记的运行任务。
 
-如果当前会话没有正在运行的任务，AstrBot 会提示当前会话没有运行中的任务。
+如果当前会话没有正在运行的任务，BulinBot 会提示当前会话没有运行中的任务。
 
 ## 内置指令扩展
 
 除上述基础指令外，其他原本随主程序提供的内置指令已经迁移到独立插件：
 
-- [builtin_commands_extension](https://github.com/AstrBotDevs/builtin_commands_extension)
+- [builtin_commands_extension](https://github.com/BulinBotDevs/builtin_commands_extension)
 
 可直接在插件市场搜索安装。
 
@@ -123,6 +123,6 @@ AstrBot 的指令通过插件机制注册。为了保持主程序轻量，当前
 
 ## 权限说明
 
-部分指令需要 AstrBot 管理员权限，例如 `/dashboard_update`、`/name`、`/op`、`/deop`、`/provider`、`/model`、`/persona` 等。
+部分指令需要 BulinBot 管理员权限，例如 `/dashboard_update`、`/name`、`/op`、`/deop`、`/provider`、`/model`、`/persona` 等。
 
 可以通过 `/sid` 获取用户 ID，然后在 WebUI 的 `配置 -> 其他配置 -> 管理员 ID` 中添加管理员。

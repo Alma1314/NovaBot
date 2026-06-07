@@ -1,7 +1,7 @@
 export {};
 
 declare global {
-  interface AstrBotDesktopAppUpdateCheckResult {
+  interface BulinBotDesktopAppUpdateCheckResult {
     ok: boolean;
     reason?: string | null;
     currentVersion?: string;
@@ -9,19 +9,19 @@ declare global {
     hasUpdate: boolean;
   }
 
-  interface AstrBotDesktopAppUpdateResult {
+  interface BulinBotDesktopAppUpdateResult {
     ok: boolean;
     reason?: string | null;
   }
 
-  interface AstrBotAppUpdaterBridge {
-    checkForAppUpdate: () => Promise<AstrBotDesktopAppUpdateCheckResult>;
-    installAppUpdate: () => Promise<AstrBotDesktopAppUpdateResult>;
+  interface BulinBotAppUpdaterBridge {
+    checkForAppUpdate: () => Promise<BulinBotDesktopAppUpdateCheckResult>;
+    installAppUpdate: () => Promise<BulinBotDesktopAppUpdateResult>;
   }
 
   interface Window {
-    astrbotAppUpdater?: AstrBotAppUpdaterBridge;
-    astrbotDesktop?: {
+    bulinbotAppUpdater?: BulinBotAppUpdaterBridge;
+    bulinbotDesktop?: {
       isDesktop: boolean;
       isDesktopRuntime: () => Promise<boolean>;
       getBackendState: () => Promise<{

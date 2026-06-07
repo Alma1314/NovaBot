@@ -4,9 +4,9 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-import astrbot.api.message_components as Comp
-from astrbot.core.platform.sources.mattermost.client import MattermostClient
-from astrbot.core.platform.sources.mattermost.mattermost_adapter import (
+import bulinbot.api.message_components as Comp
+from bulinbot.core.platform.sources.mattermost.client import MattermostClient
+from bulinbot.core.platform.sources.mattermost.mattermost_adapter import (
     MattermostPlatformAdapter,
 )
 from tests.fixtures.helpers import make_platform_config
@@ -74,7 +74,7 @@ async def test_mattermost_parse_post_attachments_maps_media_types(tmp_path):
     client.download_file = AsyncMock(return_value=b"payload")
 
     with patch(
-        "astrbot.core.platform.sources.mattermost.client.get_astrbot_temp_path",
+        "bulinbot.core.platform.sources.mattermost.client.get_bulinbot_temp_path",
         MagicMock(return_value=str(tmp_path)),
     ):
         components, temp_paths = await client.parse_post_attachments(

@@ -12,7 +12,7 @@ const dashboardRoot = path.resolve(__dirname, "..");
 const runtimeOutputFile = path.resolve(
   dashboardRoot,
   "..",
-  "astrbot",
+  "bulinbot",
   "core",
   "utils",
   "t2i",
@@ -179,7 +179,7 @@ function highlightAllCodeBlocks(root, theme) {
   });
 }
 
-window.AstrBotT2IShiki = Object.freeze({
+window.BulinBotT2IShiki = Object.freeze({
   highlightAllCodeBlocks,
   normalizeLanguage,
   renderCodeToHtml,
@@ -188,7 +188,7 @@ window.AstrBotT2IShiki = Object.freeze({
 }
 
 async function main() {
-  const tempDir = mkdtempSync(path.join(tmpdir(), "astrbot-t2i-shiki-runtime-"));
+  const tempDir = mkdtempSync(path.join(tmpdir(), "bulinbot-t2i-shiki-runtime-"));
   const entryPath = path.join(tempDir, "entry.mjs");
 
   writeFileSync(entryPath, buildVirtualSource(), "utf-8");
@@ -206,7 +206,7 @@ async function main() {
           entry: entryPath,
           fileName: () => path.basename(runtimeOutputFile),
           formats: ["iife"],
-          name: "AstrBotT2IShikiRuntime",
+          name: "BulinBotT2IShikiRuntime",
         },
         minify: "esbuild",
         outDir: path.dirname(runtimeOutputFile),

@@ -78,13 +78,13 @@ dev = [
 ]
 
 [project.scripts]
-astrbot = "astrbot.cli.__main__:cli"
+bulinbot = "bulinbot.cli.__main__:cli"
 
 [project.urls]
-Repository = "https://github.com/AstrBotDevs/AstrBot"
+Repository = "https://github.com/BulinBotDevs/BulinBot"
 
 [tool.ruff]
-exclude = ["astrbot/core/utils/t2i/local_strategy.py", "astrbot/api/all.py", "tests"]
+exclude = ["bulinbot/core/utils/t2i/local_strategy.py", "bulinbot/api/all.py", "tests"]
 line-length = 88
 target-version = "py312"
 
@@ -104,8 +104,8 @@ ignore = [
   "F403",
   "F405",
   "E501",
-  "ASYNC230", # TODO: handle ASYNC230 in AstrBot
-  "ASYNC240", # TODO: handle ASYNC240 in AstrBot
+  "ASYNC230", # TODO: handle ASYNC230 in BulinBot
+  "ASYNC240", # TODO: handle ASYNC240 in BulinBot
 ]
 
 [tool.pyright]
@@ -113,7 +113,7 @@ typeCheckingMode = "basic"
 pythonVersion = "3.12"
 reportMissingTypeStubs = false
 reportMissingImports = false
-include = ["astrbot"]
+include = ["bulinbot"]
 exclude = ["dashboard", "node_modules", "dist", "data", "tests"]
 
 [tool.hatch.metadata]
@@ -121,8 +121,8 @@ allow-direct-references = true
 
 # Include bundled dashboard dist even though it is not tracked by VCS.
 [tool.hatch.build.targets.wheel]
-packages = ["astrbot"]
-artifacts = ["astrbot/dashboard/dist/**"]
+packages = ["bulinbot"]
+artifacts = ["bulinbot/dashboard/dist/**"]
 
 # Custom build hook: builds the Vue dashboard and copies dist into the package.
 [tool.hatch.build.hooks.custom]

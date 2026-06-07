@@ -88,7 +88,7 @@ export const getPluginSearchFields = (plugin) => {
     plugin?.author,
     plugin?.repo,
     plugin?.version,
-    plugin?.astrbot_version,
+    plugin?.bulinbot_version,
     supportPlatforms,
     tags,
   ];

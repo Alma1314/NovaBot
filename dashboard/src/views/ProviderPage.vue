@@ -86,7 +86,7 @@
                   <div class="provider-section-head">
                     <div class="provider-section-title">{{ tm('providers.settings') }}</div>
                   </div>
-                  <AstrBotConfig
+                  <BulinBotConfig
                     v-if="basicSourceConfig"
                     :iterable="basicSourceConfig"
                     :metadata="providerSourceSchema"
@@ -101,7 +101,7 @@
                   <div class="provider-section-head">
                     <div class="provider-section-title">{{ tm('providerSources.advancedConfig') }}</div>
                   </div>
-                  <AstrBotConfig
+                  <BulinBotConfig
                     :iterable="advancedSourceConfig"
                     :metadata="providerSourceSchema"
                     metadataKey="provider"
@@ -248,7 +248,7 @@
         :title="updatingMode ? tm('dialogs.config.editTitle') : tm('dialogs.config.addTitle') + ` ${newSelectedProviderName} ` + tm('dialogs.config.provider')"
       >
         <v-card-text class="py-4">
-          <AstrBotConfig
+          <BulinBotConfig
             :iterable="newSelectedProviderConfig"
             :metadata="configSchema"
             metadataKey="provider"
@@ -273,7 +273,7 @@
     <v-dialog v-model="showProviderEditDialog" width="800">
       <v-card :title="providerEditDialogTitle">
         <v-card-text class="py-4">
-          <AstrBotConfig
+          <BulinBotConfig
             v-if="providerEditData"
             :iterable="providerEditData"
             :metadata="providerModelConfigSchema"
@@ -335,7 +335,7 @@ import { ref, watch } from 'vue'
 import { useRouter } from 'vue-router'
 import axios from 'axios'
 import { useModuleI18n } from '@/i18n/composables'
-import AstrBotConfig from '@/components/shared/AstrBotConfig.vue'
+import BulinBotConfig from '@/components/shared/BulinBotConfig.vue'
 import ItemCard from '@/components/shared/ItemCard.vue'
 import AddNewProvider from '@/components/provider/AddNewProvider.vue'
 import ProviderModelsPanel from '@/components/provider/ProviderModelsPanel.vue'

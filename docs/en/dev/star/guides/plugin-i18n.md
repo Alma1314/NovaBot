@@ -1,6 +1,6 @@
 # Plugin Internationalization
 
-Plugins can provide `.astrbot-plugin/i18n/*.json` files in their own directory so the WebUI can display plugin names, descriptions, and configuration text in the current language.
+Plugins can provide `.bulinbot-plugin/i18n/*.json` files in their own directory so the WebUI can display plugin names, descriptions, and configuration text in the current language.
 
 ## Directory Structure
 
@@ -8,7 +8,7 @@ Plugins can provide `.astrbot-plugin/i18n/*.json` files in their own directory s
 your_plugin/
   metadata.yaml
   _conf_schema.json
-  .astrbot-plugin/
+  .bulinbot-plugin/
     i18n/
       zh-CN.json
       en-US.json
@@ -16,7 +16,7 @@ your_plugin/
 
 Locale file names use WebUI locales, such as `zh-CN.json` and `en-US.json`. Each file must contain a JSON object.
 
-When the current locale has no translation, a field is missing, or the locale file does not exist, AstrBot falls back to the default text:
+When the current locale has no translation, a field is missing, or the locale file does not exist, BulinBot falls back to the default text:
 
 - Plugin names, card short descriptions, and descriptions fall back to `display_name`, `short_desc`, and `desc` in `metadata.yaml`.
 - Configuration text falls back to `description`, `hint`, and `labels` in `_conf_schema.json`.
@@ -59,7 +59,7 @@ Example `_conf_schema.json`:
 }
 ```
 
-Corresponding `.astrbot-plugin/i18n/zh-CN.json`:
+Corresponding `.bulinbot-plugin/i18n/zh-CN.json`:
 
 ```json
 {
@@ -90,7 +90,7 @@ pages/
     index.html
 ```
 
-Corresponding `.astrbot-plugin/i18n/en-US.json`:
+Corresponding `.bulinbot-plugin/i18n/en-US.json`:
 
 ```json
 {
@@ -108,7 +108,7 @@ Corresponding `.astrbot-plugin/i18n/en-US.json`:
 `title` is used by the WebUI shell title and the Page component name on the plugin detail page. `description` is used by the Page component description on the plugin detail page. Other fields are read by the page through the bridge:
 
 ```js
-const bridge = window.AstrBotPluginPage;
+const bridge = window.BulinBotPluginPage;
 
 function render() {
   document.getElementById("save").textContent = bridge.t(
@@ -190,4 +190,4 @@ Here is an English translation example for a real configuration:
 
 ## Constraints
 
-Plugin internationalization only reads the `.astrbot-plugin/i18n` directory. Locale files must use nested JSON objects; dot-key flat entries are not supported.
+Plugin internationalization only reads the `.bulinbot-plugin/i18n` directory. Locale files must use nested JSON objects; dot-key flat entries are not supported.

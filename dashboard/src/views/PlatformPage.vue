@@ -229,7 +229,7 @@
 
 <script>
 import axios from 'axios';
-import AstrBotConfig from '@/components/shared/AstrBotConfig.vue';
+import BulinBotConfig from '@/components/shared/BulinBotConfig.vue';
 import WaitingForRestart from '@/components/shared/WaitingForRestart.vue';
 import ConsoleDisplayer from '@/components/shared/ConsoleDisplayer.vue';
 import ItemCard from '@/components/shared/ItemCard.vue';
@@ -247,7 +247,7 @@ import { copyToClipboard } from '@/utils/clipboard';
 export default {
   name: 'PlatformPage',
   components: {
-    AstrBotConfig,
+    BulinBotConfig,
     WaitingForRestart,
     ConsoleDisplayer,
     ItemCard,
@@ -327,7 +327,7 @@ export default {
     }, 5000);
     
     // 监听语言切换事件，重新加载配置以获取插件的 i18n 数据
-    window.addEventListener('astrbot-locale-changed', this.handleLocaleChange);
+    window.addEventListener('bulinbot-locale-changed', this.handleLocaleChange);
   },
 
   beforeUnmount() {
@@ -335,7 +335,7 @@ export default {
       clearInterval(this.statsRefreshInterval);
     }
     // 移除语言切换事件监听器
-    window.removeEventListener('astrbot-locale-changed', this.handleLocaleChange);
+    window.removeEventListener('bulinbot-locale-changed', this.handleLocaleChange);
   },
 
   methods: {

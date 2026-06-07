@@ -8,7 +8,7 @@ import {
 } from '../src/views/extension/extensionPreferenceStorage.mjs';
 
 test('readPinnedExtensions uses the legacy pinned extension storage key', () => {
-  assert.equal(PINNED_EXTENSIONS_STORAGE_KEY, 'astrbot.pinnedExtensions');
+  assert.equal(PINNED_EXTENSIONS_STORAGE_KEY, 'bulinbot.pinnedExtensions');
 });
 
 test('readPinnedExtensions parses stored pinned extension names', () => {

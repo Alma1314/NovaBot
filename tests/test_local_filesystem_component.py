@@ -3,12 +3,12 @@ from __future__ import annotations
 import asyncio
 from pathlib import Path
 
-from astrbot.core.computer.booters import local as local_booter
-from astrbot.core.computer.booters.local import LocalFileSystemComponent
+from bulinbot.core.computer.booters import local as local_booter
+from bulinbot.core.computer.booters.local import LocalFileSystemComponent
 
 
 def _allow_tmp_root(monkeypatch, tmp_path: Path) -> None:
-    monkeypatch.setattr(local_booter, "get_astrbot_root", lambda: str(tmp_path))
+    monkeypatch.setattr(local_booter, "get_bulinbot_root", lambda: str(tmp_path))
 
 
 def test_local_file_system_component_prefers_utf8_before_windows_locale(

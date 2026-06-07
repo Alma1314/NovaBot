@@ -31,7 +31,7 @@ const snackbarShow = computed({
 })
 
 onMounted(() => {
-  const desktopBridge = window.astrbotDesktop
+  const desktopBridge = window.bulinbotDesktop
   if (!desktopBridge?.onTrayRestartBackend) {
     return
   }

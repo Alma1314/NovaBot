@@ -5,17 +5,17 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from astrbot.builtin_stars.builtin_commands.commands.name import NameCommand
-from astrbot.core.star.filter.permission import PermissionType, PermissionTypeFilter
-from astrbot.core.star.star_handler import star_handlers_registry
-from astrbot.core.umo_alias import (
+from bulinbot.builtin_stars.builtin_commands.commands.name import NameCommand
+from bulinbot.core.star.filter.permission import PermissionType, PermissionTypeFilter
+from bulinbot.core.star.star_handler import star_handlers_registry
+from bulinbot.core.umo_alias import (
     get_event_auto_name,
     normalize_umo_name,
     parse_umo,
     serialize_umo_alias,
 )
 
-BUILTIN_COMMANDS_PACKAGE = "astrbot.builtin_stars.builtin_commands"
+BUILTIN_COMMANDS_PACKAGE = "bulinbot.builtin_stars.builtin_commands"
 BUILTIN_MAIN_MODULE = f"{BUILTIN_COMMANDS_PACKAGE}.main"
 
 

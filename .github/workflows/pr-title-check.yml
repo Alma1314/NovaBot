@@ -6,7 +6,7 @@ on:
 
 jobs:
   title-format:
-    if: github.repository == 'AstrBotDevs/AstrBot'
+    if: github.repository == 'BulinBotDevs/BulinBot'
     runs-on: ubuntu-latest
     permissions:
       pull-requests: write

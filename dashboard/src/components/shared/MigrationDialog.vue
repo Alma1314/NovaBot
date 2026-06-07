@@ -89,7 +89,7 @@
                     <v-btn color="grey" variant="text" @click="handleClose">
                         {{ t('core.common.close') }}
                     </v-btn>
-                    <v-btn color="primary" variant="elevated" @click="restartAstrBot">
+                    <v-btn color="primary" variant="elevated" @click="restartBulinBot">
                         {{ t('features.migration.dialog.restartNow') }}
                     </v-btn>
                 </template>
@@ -113,7 +113,7 @@
 import { ref, computed, watch } from 'vue'
 import axios from 'axios'
 import { useI18n } from '@/i18n/composables'
-import { restartAstrBot as restartAstrBotRuntime } from '@/utils/restartAstrBot'
+import { restartBulinBot as restartBulinBotRuntime } from '@/utils/restartBulinBot'
 import ConsoleDisplayer from './ConsoleDisplayer.vue'
 import WaitingForRestart from './WaitingForRestart.vue'
 
@@ -258,10 +258,10 @@ const getPlatformLabel = (platform) => {
     return `${name}`
 }
 
-// 重启 AstrBot
-const restartAstrBot = async () => {
+// 重启 BulinBot
+const restartBulinBot = async () => {
     try {
-        await restartAstrBotRuntime(wfr.value)
+        await restartBulinBotRuntime(wfr.value)
     } catch (error) {
         console.error(error)
     }

@@ -3,7 +3,7 @@ from types import SimpleNamespace
 
 import pytest
 
-from astrbot.core.knowledge_base.retrieval.sparse_retriever import SparseRetriever
+from bulinbot.core.knowledge_base.retrieval.sparse_retriever import SparseRetriever
 
 
 def make_doc(chunk_id: str, text: str, chunk_index: int = 0) -> dict:

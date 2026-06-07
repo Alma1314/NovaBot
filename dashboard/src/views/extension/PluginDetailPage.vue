@@ -108,7 +108,7 @@ const isMarketDetail = computed(() => detailSourceTab.value === "market");
 const detailParentTitle = computed(() =>
   isMarketDetail.value
     ? tm("tabs.market")
-    : tm("titles.installedAstrBotPlugins"),
+    : tm("titles.installedBulinBotPlugins"),
 );
 
 const pluginDesc = computed(() => {
@@ -214,11 +214,11 @@ const tagsDisplay = computed(() => {
   return tags.filter((tag) => typeof tag === "string" && tag.trim().length > 0);
 });
 
-const astrbotVersionDisplay = computed(() =>
+const bulinbotVersionDisplay = computed(() =>
   String(
     firstPresentValue(
-      pluginData.value?.astrbot_version,
-      props.marketPlugin?.astrbot_version,
+      pluginData.value?.bulinbot_version,
+      props.marketPlugin?.bulinbot_version,
     ) || "",
   ).trim(),
 );
@@ -257,8 +257,8 @@ const infoRows = computed(() => {
       optional: true,
     },
     {
-      label: tm("detail.info.astrbotVersion"),
-      value: astrbotVersionDisplay.value,
+      label: tm("detail.info.bulinbotVersion"),
+      value: bulinbotVersionDisplay.value,
       optional: true,
     },
     {

@@ -1,9 +1,9 @@
 # 插件 Pages
 
-AstrBot 支持插件通过 `pages/` 目录暴露 Dashboard 页面。`pages/` 下的每个一级子目录都是一个独立 Page：
+BulinBot 支持插件通过 `pages/` 目录暴露 Dashboard 页面。`pages/` 下的每个一级子目录都是一个独立 Page：
 
 ```text
-astrbot_plugin_page_demo/
+bulinbot_plugin_page_demo/
 ├─ main.py
 └─ pages/
    ├─ bridge-demo/
@@ -16,11 +16,11 @@ astrbot_plugin_page_demo/
       └─ index.html
 ```
 
-AstrBot 会扫描 `pages/<page_name>/index.html`；没有 `index.html` 的目录会被忽略。
+BulinBot 会扫描 `pages/<page_name>/index.html`；没有 `index.html` 的目录会被忽略。
 
 如果只是让用户填写几个配置项，优先使用 [`_conf_schema.json`](./plugin-config.md)。插件 Pages 更适合复杂表单、Dashboard、日志、文件上传下载、SSE 和自定义交互流程。
 
-一旦注册了 Pages，用户可以在：AstrBot WebUI 插件页中的插件卡片中，点击插件卡片进入插件详细页面，在插件详细页面中可以看到并进入注册的 Pages。
+一旦注册了 Pages，用户可以在：BulinBot WebUI 插件页中的插件卡片中，点击插件卡片进入插件详细页面，在插件详细页面中可以看到并进入注册的 Pages。
 
 ## 最小前端示例
 
@@ -45,7 +45,7 @@ AstrBot 会扫描 `pages/<page_name>/index.html`；没有 `index.html` 的目录
 `pages/bridge-demo/app.js`
 
 ```js
-const bridge = window.AstrBotPluginPage;
+const bridge = window.BulinBotPluginPage;
 const output = document.getElementById("output");
 
 const context = await bridge.ready();
@@ -57,7 +57,7 @@ document.getElementById("ping").addEventListener("click", async () => {
 });
 ```
 
-这里不需要手动引入 bridge SDK。AstrBot 会在返回的 HTML 里自动插入 `/api/plugin/page/bridge-sdk.js`。
+这里不需要手动引入 bridge SDK。BulinBot 会在返回的 HTML 里自动插入 `/api/plugin/page/bridge-sdk.js`。
 
 ## 注册后端 API
 
@@ -71,9 +71,9 @@ document.getElementById("ping").addEventListener("click", async () => {
 
 ```python
 from quart import jsonify
-from astrbot.api.star import Context, Star
+from bulinbot.api.star import Context, Star
 
-PLUGIN_NAME = "astrbot_plugin_page_demo"
+PLUGIN_NAME = "bulinbot_plugin_page_demo"
 
 
 class MyPlugin(Star):
@@ -92,7 +92,7 @@ class MyPlugin(Star):
 
 ## Bridge API
 
-插件 Page 中可直接使用 `window.AstrBotPluginPage`：
+插件 Page 中可直接使用 `window.BulinBotPluginPage`：
 
 - `ready()`: 等待 bridge 就绪并返回上下文
 - `getContext()`: 读取当前上下文
@@ -111,7 +111,7 @@ class MyPlugin(Star):
 
 ```json
 {
-  "pluginName": "astrbot_plugin_page_demo",
+  "pluginName": "bulinbot_plugin_page_demo",
   "displayName": "Plugin Page Demo",
   "pageName": "bridge-demo",
   "pageTitle": "Bridge Demo",
@@ -125,7 +125,7 @@ class MyPlugin(Star):
 
 ## Page 国际化
 
-插件 Page 复用插件 i18n 资源文件。给 `.astrbot-plugin/i18n/<locale>.json` 增加 `pages.<page_name>` 即可：
+插件 Page 复用插件 i18n 资源文件。给 `.bulinbot-plugin/i18n/<locale>.json` 增加 `pages.<page_name>` 即可：
 
 ```json
 {
@@ -145,7 +145,7 @@ class MyPlugin(Star):
 在 Page 内部使用 `t()` 渲染文案，并用 `onContext()` 响应语言切换：
 
 ```js
-const bridge = window.AstrBotPluginPage;
+const bridge = window.BulinBotPluginPage;
 
 function render() {
   document.title = bridge.t("pages.bridge-demo.title", "Bridge Demo");
@@ -163,7 +163,7 @@ bridge.onContext(render);
 
 切换 WebUI 语言后，Dashboard 会把新的 `locale` 和插件 i18n 资源通过 bridge 发送给 iframe；只要 Page 监听了 `onContext()`，通常不需要刷新页面。
 
-如果你的内联脚本需要同步访问 `window.AstrBotPluginPage`，请把脚本放到外部 module 文件中，或在自己的脚本前显式引入：
+如果你的内联脚本需要同步访问 `window.BulinBotPluginPage`，请把脚本放到外部 module 文件中，或在自己的脚本前显式引入：
 
 ```html
 <script src="/api/plugin/page/bridge-sdk.js"></script>
@@ -171,7 +171,7 @@ bridge.onContext(render);
 
 ## 亮暗主题适配
 
-AstrBot 切换亮色/暗色模式时，会自动将主题状态同步给插件 Page。bridge SDK 会在 `<html>` 元素上维护 `data-theme` 属性：
+BulinBot 切换亮色/暗色模式时，会自动将主题状态同步给插件 Page。bridge SDK 会在 `<html>` 元素上维护 `data-theme` 属性：
 
 - 亮色模式：`<html data-theme="light">`
 - 暗色模式：`<html data-theme="dark">`
@@ -197,14 +197,14 @@ body {
 }
 ```
 
-AstrBot 在服务端返回 HTML 时，会自动在 `<html>` 标签上注入 `data-theme` 属性，不会出现初始闪烁。
+BulinBot 在服务端返回 HTML 时，会自动在 `<html>` 标签上注入 `data-theme` 属性，不会出现初始闪烁。
 
 ### JavaScript 响应主题变化
 
 上下文中的 `isDark` 字段表示当前是否为暗色模式。通过 `onContext()` 可以监听主题切换：
 
 ```js
-const bridge = window.AstrBotPluginPage;
+const bridge = window.BulinBotPluginPage;
 
 function render() {
   if (bridge.getContext()?.isDark) {
@@ -221,9 +221,9 @@ bridge.onContext(render);
 
 ## 静态资源路径规则
 
-AstrBot 会重写相对资源路径，并自动补上短期 `asset_token`。你只需要正常写相对路径，不要自己拼接 `/api/plugin/page/content/...`。
+BulinBot 会重写相对资源路径，并自动补上短期 `asset_token`。你只需要正常写相对路径，不要自己拼接 `/api/plugin/page/content/...`。
 
-AstrBot 会重写：
+BulinBot 会重写：
 
 - HTML `src` 和 `href`
 - CSS `url(...)`
@@ -245,7 +245,7 @@ allow-scripts allow-forms allow-downloads
 
 Page 不能直接访问 Dashboard cookies、LocalStorage 或同源 DOM，也不能绕过 bridge 复用 Dashboard auth。
 
-AstrBot 还会给资源响应添加安全头，包括：
+BulinBot 还会给资源响应添加安全头，包括：
 
 - `X-Frame-Options: SAMEORIGIN`
 - `Content-Security-Policy: frame-ancestors 'self'; object-src 'none'; base-uri 'self'`
@@ -262,7 +262,7 @@ AstrBot 还会给资源响应添加安全头，包括：
 建议在页面脚本开始处保存 bridge 引用：
 
 ```js
-const bridge = window.AstrBotPluginPage;
+const bridge = window.BulinBotPluginPage;
 ```
 
 ### `ready()`
@@ -278,7 +278,7 @@ console.log(context.pluginName, context.pageName, context.locale);
 
 ```json
 {
-  "pluginName": "astrbot_plugin_page_demo",
+  "pluginName": "bulinbot_plugin_page_demo",
   "displayName": "Plugin Page Demo",
   "pageName": "bridge-demo",
   "pageTitle": "Bridge Demo",

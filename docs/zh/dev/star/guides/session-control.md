@@ -14,13 +14,13 @@
 ...
 ```
 
-AstrBot 提供了开箱即用的会话控制功能：
+BulinBot 提供了开箱即用的会话控制功能：
 
 导入：
 
 ```py
-import astrbot.api.message_components as Comp
-from astrbot.core.utils.session_waiter import (
+import bulinbot.api.message_components as Comp
+from bulinbot.core.utils.session_waiter import (
     session_waiter,
     SessionController,
 )
@@ -29,17 +29,17 @@ from astrbot.core.utils.session_waiter import (
 handler 内的代码可以如下：
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from bulinbot.api.event import filter, BulinMessageEvent
 
 @filter.command("成语接龙")
-async def handle_empty_mention(self, event: AstrMessageEvent):
+async def handle_empty_mention(self, event: BulinMessageEvent):
     """成语接龙具体实现"""
     try:
         yield event.plain_result("请发送一个成语~")
 
         # 具体的会话控制器使用方法
         @session_waiter(timeout=60, record_history_chains=False) # 注册一个会话控制器，设置超时时间为 60 秒，不记录历史消息链
-        async def empty_mention_waiter(controller: SessionController, event: AstrMessageEvent):
+        async def empty_mention_waiter(controller: SessionController, event: BulinMessageEvent):
             idiom = event.message_str # 用户发来的成语，假设是 "一马当先"
 
             if idiom == "退出":   # 假设用户想主动退出成语接龙，输入了 "退出"
@@ -54,7 +54,7 @@ async def handle_empty_mention(self, event: AstrMessageEvent):
 
             # ...
             message_result = event.make_result()
-            message_result.chain = [Comp.Plain("先见之明")] # import astrbot.api.message_components as Comp
+            message_result.chain = [Comp.Plain("先见之明")] # import bulinbot.api.message_components as Comp
             await event.send(message_result) # 发送回复，不能使用 yield
 
             controller.keep(timeout=60, reset_timeout=True) # 重置超时时间为 60s，如果不重置，则会继续之前的超时时间计时。
@@ -88,11 +88,11 @@ async def handle_empty_mention(self, event: AstrMessageEvent):
 
 ## 自定义会话 ID 算子
 
-默认情况下，AstrBot 会话控制器会将基于 `sender_id` （发送人的 ID）作为识别不同会话的标识，如果想将一整个群作为一个会话，则需要自定义会话 ID 算子。
+默认情况下，BulinBot 会话控制器会将基于 `sender_id` （发送人的 ID）作为识别不同会话的标识，如果想将一整个群作为一个会话，则需要自定义会话 ID 算子。
 
 ```py
-import astrbot.api.message_components as Comp
-from astrbot.core.utils.session_waiter import (
+import bulinbot.api.message_components as Comp
+from bulinbot.core.utils.session_waiter import (
     session_waiter,
     SessionFilter,
     SessionController,
@@ -101,7 +101,7 @@ from astrbot.core.utils.session_waiter import (
 # 沿用上面的 handler
 # ...
 class CustomFilter(SessionFilter):
-    def filter(self, event: AstrMessageEvent) -> str:
+    def filter(self, event: BulinMessageEvent) -> str:
         return event.get_group_id() if event.get_group_id() else event.unified_msg_origin
 
 await empty_mention_waiter(event, session_filter=CustomFilter()) # 这里传入 session_filter

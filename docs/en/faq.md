@@ -4,19 +4,19 @@
 
 ### Encountering 404 Error When Opening the Dashboard
 
-Download `AstrBot-vxxxxx-dashboard.zip` from the [release](https://github.com/AstrBotDevs/AstrBot/releases) page, extract it, and move it to `AstrBot/data`. If it still doesn't work, try restarting your computer (based on community feedback).
+Download `BulinBot-vxxxxx-dashboard.zip` from the [release](https://github.com/BulinBotDevs/BulinBot/releases) page, extract it, and move it to `BulinBot/data`. If it still doesn't work, try restarting your computer (based on community feedback).
 
 ### First Login Account and Random Password
 
-On first startup, the WebUI account is `astrbot` by default, and the default password is randomly generated (it is not a fixed hardcoded value). Check the startup logs and log in with the random initial password shown there:
+On first startup, the WebUI account is `bulinbot` by default, and the default password is randomly generated (it is not a fixed hardcoded value). Check the startup logs and log in with the random initial password shown there:
 
 ```text
 [00:27:40.590] [Core] [INFO] [dashboard.server:523]:
  ✨✨✨
-  AstrBot v4.24.3 WebUI is ready
+  BulinBot v4.24.3 WebUI is ready
 
    ➜  Local: http://localhost:6185
-   ➜  Initial username: astrbot
+   ➜  Initial username: bulinbot
    ➜  Initial password: UiYVpZxnW8k22IWqf0ru5pOy
    ➜  Change it after logging in
  ✨✨✨
@@ -27,12 +27,12 @@ Set dashboard.host in data/cmd_config.json to enable remote access.
 
 ### Forgot Dashboard Password
 
-If you forgot your AstrBot dashboard password, find the `"dashboard"` field in `AstrBot/data/cmd_config.json`, for example:
+If you forgot your BulinBot dashboard password, find the `"dashboard"` field in `BulinBot/data/cmd_config.json`, for example:
 
 ```json
   "dashboard": {
     "enable": true,
-    "username": "astrbot",
+    "username": "bulinbot",
     "password": "81e0c3dxxxxxxxxxxx78862e78",
     "pbkdf2_password": "pbkdf2_sha256$600000$1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     "password_storage_upgraded": true,
@@ -68,31 +68,31 @@ The segment should look like:
   },
 ```
 
-After restart, AstrBot will automatically generate a random password with the fixed username `astrbot`; check the startup logs.
+After restart, BulinBot will automatically generate a random password with the fixed username `bulinbot`; check the startup logs.
 
-### Correct Password Cannot Log In After Upgrading AstrBot
+### Correct Password Cannot Log In After Upgrading BulinBot
 
-If you are sure the dashboard password is correct but still cannot log in after upgrading AstrBot, the old WebUI static files may be incompatible with the newer backend.
+If you are sure the dashboard password is correct but still cannot log in after upgrading BulinBot, the old WebUI static files may be incompatible with the newer backend.
 
 Solution:
 
-1. Stop AstrBot.
-2. Delete the `dist` folder under AstrBot's `data` directory: `AstrBot/data/dist`.
-3. Restart AstrBot.
+1. Stop BulinBot.
+2. Delete the `dist` folder under BulinBot's `data` directory: `BulinBot/data/dist`.
+3. Restart BulinBot.
 4. Access the dashboard in your browser. Press `Ctrl+Shift+R` or `Ctrl+F5` (or `Cmd+Shift+R` on macOS) to force refresh the page.
 
-After restart, AstrBot will reload or download WebUI files that match the current version.
+After restart, BulinBot will reload or download WebUI files that match the current version.
 
 ## Bot Core Related
 
-### How to Let AstrBot Control My Mac / Windows / Linux Computer?
+### How to Let BulinBot Control My Mac / Windows / Linux Computer?
 
-1. In AstrBot WebUI's `Config -> General Config`, find `Use Computer Capabilities`, and select `local` for the runtime environment.
+1. In BulinBot WebUI's `Config -> General Config`, find `Use Computer Capabilities`, and select `local` for the runtime environment.
 2. In `Config -> Other Config`, find `Admin ID List`, and add your user ID (you can get it through the `/sid` command).
 
 > [!TIP]
-> For security reasons, when runtime environment is set to `local`, AstrBot only allows AstrBot administrators to use computer capabilities by default.
-> You can select `sandbox` for the runtime environment, which allows all users to use computer capabilities (in an isolated sandbox). For more details, see [AstrBot Sandbox Environment](/en/use/astrbot-agent-sandbox.md)
+> For security reasons, when runtime environment is set to `local`, BulinBot only allows BulinBot administrators to use computer capabilities by default.
+> You can select `sandbox` for the runtime environment, which allows all users to use computer capabilities (in an isolated sandbox). For more details, see [BulinBot Sandbox Environment](/en/use/bulinbot-agent-sandbox.md)
 
 ### Bot Cannot Chat in Group Conversations
 
@@ -104,7 +104,7 @@ After restart, AstrBot will reload or download WebUI files that match the curren
 
 ### Chinese Characters Garbled When Locally Rendering Markdown Images (t2i)
 
-You can customize the font. See details -> [#957](https://github.com/AstrBotDevs/AstrBot/issues/957#issuecomment-2749981802)
+You can customize the font. See details -> [#957](https://github.com/BulinBotDevs/BulinBot/issues/957#issuecomment-2749981802)
 
 Recommended font: [Maple Mono](https://github.com/subframe7536/maple-font).
 
@@ -127,9 +127,9 @@ This is because the provider's API returned empty text. Try the following steps:
 
 ### Error `No module named 'xxx'` After Installing Plugin
 
-![image](https://files.astrbot.app/docs/source/images/faq/image.png)
+![image](https://files.bulinbot.app/docs/source/images/faq/image.png)
 
-This is because the plugin's dependencies were not installed properly. Normally, AstrBot automatically installs plugin dependencies after installing the plugin, but installation may fail in the following situations:
+This is because the plugin's dependencies were not installed properly. Normally, BulinBot automatically installs plugin dependencies after installing the plugin, but installation may fail in the following situations:
 
 1. Network issues preventing dependency downloads
 2. Plugin author did not include a `requirements.txt` file
@@ -137,8 +137,8 @@ This is because the plugin's dependencies were not installed properly. Normally,
 
 Solution:
 
-Based on the error message, refer to the plugin's README to manually install dependencies. You can install dependencies in the AstrBot WebUI under `Console` -> `Install Pip Package`.
+Based on the error message, refer to the plugin's README to manually install dependencies. You can install dependencies in the BulinBot WebUI under `Console` -> `Install Pip Package`.
 
-![image](https://files.astrbot.app/docs/source/images/faq/image-1.png)
+![image](https://files.bulinbot.app/docs/source/images/faq/image-1.png)
 
 If you find that the plugin author did not include a `requirements.txt` file, please submit an issue in the plugin repository to remind the author to add it.

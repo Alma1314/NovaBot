@@ -1,6 +1,6 @@
 import pytest
 
-from astrbot.core.agent.message import (
+from bulinbot.core.agent.message import (
     CheckpointData,
     CheckpointMessageSegment,
     Message,
@@ -10,9 +10,9 @@ from astrbot.core.agent.message import (
     get_checkpoint_id,
     strip_checkpoint_messages,
 )
-from astrbot.core.provider.entities import ProviderRequest
-from astrbot.core.provider.provider import Provider
-from astrbot.dashboard.routes.chat import ChatRoute
+from bulinbot.core.provider.entities import ProviderRequest
+from bulinbot.core.provider.provider import Provider
+from bulinbot.dashboard.routes.chat import ChatRoute
 
 
 def test_checkpoint_message_segment_round_trip():

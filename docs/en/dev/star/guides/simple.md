@@ -3,9 +3,9 @@
 The `main.py` file in the plugin template is a minimal plugin instance.
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent, MessageEventResult
-from astrbot.api.star import Context, Star
-from astrbot.api import logger # Use the logger interface provided by AstrBot
+from bulinbot.api.event import filter, BulinMessageEvent, MessageEventResult
+from bulinbot.api.star import Context, Star
+from bulinbot.api import logger # Use the logger interface provided by BulinBot
 
 class MyPlugin(Star):
     def __init__(self, context: Context):
@@ -13,7 +13,7 @@ class MyPlugin(Star):
 
     # Decorator to register a command. The command name is "helloworld". Once registered, sending `/helloworld` will trigger this command and respond with `Hello, {user_name}!`
     @filter.command("helloworld")
-    async def helloworld(self, event: AstrMessageEvent):
+    async def helloworld(self, event: BulinMessageEvent):
         '''This is a hello world command''' # This is the handler's description, which will be parsed to help users understand the plugin's functionality. Highly recommended to provide.
         user_name = event.get_sender_name()
         message_str = event.message_str # Get the plain text content of the message
@@ -27,10 +27,10 @@ class MyPlugin(Star):
 Explanation:
 
 - Plugins must inherit from the `Star` class.
-- The `Context` class is used for plugin interaction with AstrBot Core, allowing you to call various APIs provided by AstrBot Core.
+- The `Context` class is used for plugin interaction with BulinBot Core, allowing you to call various APIs provided by BulinBot Core.
 - Specific handler functions are defined within the plugin class, such as the `helloworld` function here.
-- `AstrMessageEvent` is AstrBot's message event object, which stores information about the message sender, message content, etc.
-- `AstrBotMessage` is AstrBot's message object, which stores the specific content of messages delivered by the messaging platform. It can be accessed via `event.message_obj`.
+- `BulinMessageEvent` is BulinBot's message event object, which stores information about the message sender, message content, etc.
+- `BulinBotMessage` is BulinBot's message object, which stores the specific content of messages delivered by the messaging platform. It can be accessed via `event.message_obj`.
 
 > [!TIP]
 >

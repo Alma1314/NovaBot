@@ -14,13 +14,13 @@ User: Keen observation (明察秋毫)
 ...
 ```
 
-AstrBot provides out-of-the-box session control functionality:
+BulinBot provides out-of-the-box session control functionality:
 
 Import:
 
 ```py
-import astrbot.api.message_components as Comp
-from astrbot.core.utils.session_waiter import (
+import bulinbot.api.message_components as Comp
+from bulinbot.core.utils.session_waiter import (
     session_waiter,
     SessionController,
 )
@@ -29,17 +29,17 @@ from astrbot.core.utils.session_waiter import (
 Code within the handler can be written as follows:
 
 ```python
-from astrbot.api.event import filter, AstrMessageEvent
+from bulinbot.api.event import filter, BulinMessageEvent
 
 @filter.command("idiom-chain")
-async def handle_empty_mention(self, event: AstrMessageEvent):
+async def handle_empty_mention(self, event: BulinMessageEvent):
     """Idiom chain game implementation"""
     try:
         yield event.plain_result("Please send an idiom~")
 
         # How to use the session controller
         @session_waiter(timeout=60, record_history_chains=False) # Register a session controller with a 60-second timeout, without recording message history
-        async def empty_mention_waiter(controller: SessionController, event: AstrMessageEvent):
+        async def empty_mention_waiter(controller: SessionController, event: BulinMessageEvent):
             idiom = event.message_str # The idiom sent by the user, e.g., "one horse takes the lead"
 
             if idiom == "exit":   # If the user wants to exit the idiom chain game by typing "exit"
@@ -54,7 +54,7 @@ async def handle_empty_mention(self, event: AstrMessageEvent):
 
             # ...
             message_result = event.make_result()
-            message_result.chain = [Comp.Plain("Foresight")] # import astrbot.api.message_components as Comp
+            message_result.chain = [Comp.Plain("Foresight")] # import bulinbot.api.message_components as Comp
             await event.send(message_result) # Send a reply, cannot use yield
 
             controller.keep(timeout=60, reset_timeout=True) # Reset timeout to 60s. If not reset, it will continue the previous timeout countdown.
@@ -88,11 +88,11 @@ Used by developers to control whether a session should end, and to retrieve mess
 
 ## Custom Session ID Filter
 
-By default, the AstrBot session controller uses `sender_id` (the sender's ID) as the identifier for distinguishing different sessions. If you want to treat an entire group as one session, you need to customize the session ID filter.
+By default, the BulinBot session controller uses `sender_id` (the sender's ID) as the identifier for distinguishing different sessions. If you want to treat an entire group as one session, you need to customize the session ID filter.
 
 ```py
-import astrbot.api.message_components as Comp
-from astrbot.core.utils.session_waiter import (
+import bulinbot.api.message_components as Comp
+from bulinbot.core.utils.session_waiter import (
     session_waiter,
     SessionFilter,
     SessionController,
@@ -101,7 +101,7 @@ from astrbot.core.utils.session_waiter import (
 # Using the handler from above
 # ...
 class CustomFilter(SessionFilter):
-    def filter(self, event: AstrMessageEvent) -> str:
+    def filter(self, event: BulinMessageEvent) -> str:
         return event.get_group_id() if event.get_group_id() else event.unified_msg_origin
 
 await empty_mention_waiter(event, session_filter=CustomFilter()) # Pass in session_filter here

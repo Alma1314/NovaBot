@@ -61,8 +61,8 @@ const supportPlatforms = computed(() => {
   return platforms.filter((item) => typeof item === "string");
 });
 
-const astrbotVersionRequirement = computed(() => {
-  const versionSpec = props.extension?.astrbot_version;
+const bulinbotVersionRequirement = computed(() => {
+  const versionSpec = props.extension?.bulinbot_version;
   return typeof versionSpec === "string" && versionSpec.trim().length
     ? versionSpec.trim()
     : "";
@@ -279,13 +279,13 @@ const openWebui = () => {
             </v-chip>
             <PluginPlatformChip :platforms="supportPlatforms" />
             <v-chip
-              v-if="astrbotVersionRequirement"
+              v-if="bulinbotVersionRequirement"
               color="secondary"
               variant="outlined"
               label
               size="small"
             >
-              AstrBot: {{ astrbotVersionRequirement }}
+              BulinBot: {{ bulinbotVersionRequirement }}
             </v-chip>
           </div>
 

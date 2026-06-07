@@ -221,7 +221,7 @@ export default {
             collapsed: true,
             visibleCount: 20,
             records: [],
-            hasAgentPrepare: trace.action === 'astr_agent_prepare'
+            hasAgentPrepare: trace.action === 'bulin_agent_prepare'
           };
           this.eventIndex[trace.span_id] = event;
           this.events.push(event);
@@ -238,7 +238,7 @@ export default {
           timeLabel: this.formatTime(trace.time),
           key: recordKey
         });
-        if (trace.action === 'astr_agent_prepare') {
+        if (trace.action === 'bulin_agent_prepare') {
           event.hasAgentPrepare = true;
         }
         if (!event.first_time || trace.time < event.first_time) {

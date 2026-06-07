@@ -4,11 +4,11 @@
 这是一个最小化的测试插件，用于验证插件系统的功能。
 """
 
-from astrbot.api import llm_tool, star
-from astrbot.api.event import AstrMessageEvent, MessageEventResult, filter
+from bulinbot.api import llm_tool, star
+from bulinbot.api.event import BulinMessageEvent, MessageEventResult, filter
 
 
-@star.register("test_plugin", "AstrBot Team", "测试插件 - 用于插件系统测试", "1.0.0")
+@star.register("test_plugin", "BulinBot Team", "测试插件 - 用于插件系统测试", "1.0.0")
 class TestPlugin(star.Star):
     """测试插件类"""
 
@@ -21,7 +21,7 @@ class TestPlugin(star.Star):
         self.initialized = False
 
     @filter.command("test_cmd")
-    async def test_command(self, event: AstrMessageEvent) -> None:
+    async def test_command(self, event: BulinMessageEvent) -> None:
         """测试命令处理器。"""
         event.set_result(MessageEventResult().message("测试命令执行成功"))
 
@@ -35,6 +35,6 @@ class TestPlugin(star.Star):
         return f"测试工具执行成功: {query}"
 
     @filter.regex(r"^test_regex_(.+)$")
-    async def test_regex_handler(self, event: AstrMessageEvent) -> None:
+    async def test_regex_handler(self, event: BulinMessageEvent) -> None:
         """测试正则处理器。"""
         event.set_result(MessageEventResult().message("正则匹配成功"))

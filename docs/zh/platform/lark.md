@@ -20,22 +20,22 @@
 
 ## 创建机器人
 
-飞书（Lark）支持两种创建方式：在 AstrBot 中扫码一键创建，或在飞书开发者后台手动创建企业自建应用。
+飞书（Lark）支持两种创建方式：在 BulinBot 中扫码一键创建，或在飞书开发者后台手动创建企业自建应用。
 
 ### 方式一：扫码一键创建
 
 需要版本 >4.25.0。
 
-进入 AstrBot 管理面板，点击左边栏 `机器人`，然后点击 `+ 创建机器人`，选择 `lark(飞书)`。
+进入 BulinBot 管理面板，点击左边栏 `机器人`，然后点击 `+ 创建机器人`，选择 `lark(飞书)`。
 
-在 `选择创建方式` 中选择 `扫码一键创建`，按需选择国内版或海外版，然后使用手机飞书扫描页面中的二维码并确认。创建成功后，AstrBot 会自动写入该应用的 `app_id`、`app_secret` 和域名配置。
+在 `选择创建方式` 中选择 `扫码一键创建`，按需选择国内版或海外版，然后使用手机飞书扫描页面中的二维码并确认。创建成功后，BulinBot 会自动写入该应用的 `app_id`、`app_secret` 和域名配置。
 
 > [!IMPORTANT]
 > 通过扫码方式创建后，群聊下默认仅会接收 @ 机器人和通过唤醒前缀（例如 `/`）触发的消息。如果你希望机器人接收群聊中的所有消息，需要前往飞书开发者后台为应用开通额外权限。
 >
 > 可以将下面链接中的 `<APP_ID>` 替换为你的飞书应用 App ID 后打开，一键进入权限开通页：
 >
-> App ID 获取方式：回到 AstrBot 的 `机器人` 页，找到刚刚创建的飞书机器人，点击 `编辑`，弹出的对话框中可以看到 App ID。
+> App ID 获取方式：回到 BulinBot 的 `机器人` 页，找到刚刚创建的飞书机器人，点击 `编辑`，弹出的对话框中可以看到 App ID。
 >
 > ```text
 > https://open.feishu.cn/app/<APP_ID>/auth?q=contact:contact.base:readonly,im:message.p2p_msg:readonly,im:message.group_at_msg:readonly,im:message:send,im:message,im:message:send_as_bot,im:resource:upload,im:resource,cardkit:card:write,im:message.group_at_msg:readonly,im:message.group_msg&op_from=openapi&token_type=tenant
@@ -47,19 +47,19 @@
 
 前往 [开发者后台](https://open.feishu.cn/app) ，创建企业自建应用。
 
-![创建企业自建应用](https://files.astrbot.app/docs/source/images/lark/image.png)
+![创建企业自建应用](https://files.bulinbot.app/docs/source/images/lark/image.png)
 
 添加应用能力——机器人。
 
-![添加应用能力](https://files.astrbot.app/docs/source/images/lark/image-1.png)
+![添加应用能力](https://files.bulinbot.app/docs/source/images/lark/image-1.png)
 
 点击凭证与基础信息，获取 app_id 和 app_secret。
 
-![获取 app_id 和 app_secret](https://files.astrbot.app/docs/source/images/lark/image-4.png)
+![获取 app_id 和 app_secret](https://files.bulinbot.app/docs/source/images/lark/image-4.png)
 
-## 配置 AstrBot
+## 配置 BulinBot
 
-1. 进入 AstrBot 的管理面板
+1. 进入 BulinBot 的管理面板
 2. 点击左边栏 `机器人`
 3. 然后在右边的界面中，点击 `+ 创建机器人` 
 4. 选择 `lark(飞书)`
@@ -76,7 +76,7 @@
 
 对于订阅方式，`socket` 代表使用「长连接」订阅方式，`webhook` 代表「将事件发送至开发者服务器」的订阅方式，后者需要您拥有公网服务器。一般来说使用 `socket` 即可，如果您使用国际版飞书或者企业自部署飞书，请选择 `webhook`。相应地，接下来的配置也会有所不同。
 
-如果您选择了 `webhook` 方式，选择了之后，前往飞书的开发者后台，点击事件与回调，点击加密策略，填写 Encrypt Key。这不是必须的，AstrBot 十分注重你的数据安全，所以请务必填写。填写后复制 `Encrypt Key` 和 `Verification Token` 到 AstrBot 配置的 `encrypt_key` 和 `verification_token` 处。
+如果您选择了 `webhook` 方式，选择了之后，前往飞书的开发者后台，点击事件与回调，点击加密策略，填写 Encrypt Key。这不是必须的，BulinBot 十分注重你的数据安全，所以请务必填写。填写后复制 `Encrypt Key` 和 `Verification Token` 到 BulinBot 配置的 `encrypt_key` 和 `verification_token` 处。
 
 点击 `保存`。
 
@@ -88,7 +88,7 @@
 
 接下来，点击事件与回调，使用长连接接收事件，点击保存。**如果上一步没有成功启动，那么这里将无法保存。**
 
-![设置事件与回调](https://files.astrbot.app/docs/source/images/lark/image-6.png)
+![设置事件与回调](https://files.bulinbot.app/docs/source/images/lark/image-6.png)
 
 ### `webhook` 将事件发送至开发者服务器方式
 
@@ -97,7 +97,7 @@
 
 在点击 `保存` 后，机器人卡片会显示「查看 Webhook 链接」，点击查看，复制回调 URL。
 
-![](https://files.astrbot.app/docs/source/images/lark/webhook.png)
+![](https://files.bulinbot.app/docs/source/images/lark/webhook.png)
 
 接下来，回到飞书的事件与回调页，点击「事件配置」，选择「将事件发送至开发者服务器」，将“请求地址”填写为刚刚复制的回调 URL，点击保存。如果一切无误将不会报错。
 
@@ -105,11 +105,11 @@
 
 上一步事件配置完成后，点击添加事件，消息与群组，下拉找到 `接收消息`，添加。
 
-![添加事件](https://files.astrbot.app/docs/source/images/lark/image-7.png)
+![添加事件](https://files.bulinbot.app/docs/source/images/lark/image-7.png)
 
 点击开通以下权限。
 
-![开通权限](https://files.astrbot.app/docs/source/images/lark/image-8.png)
+![开通权限](https://files.bulinbot.app/docs/source/images/lark/image-8.png)
 
 再点击上面的`保存`按钮。
 
@@ -126,13 +126,13 @@
 
 最终开通的权限如下图：
 
-![最终开通的权限](https://files.astrbot.app/docs/source/images/lark/image-11.png)
+![最终开通的权限](https://files.bulinbot.app/docs/source/images/lark/image-11.png)
 
 ## 创建版本
 
 创建版本。
 
-![创建版本](https://files.astrbot.app/docs/source/images/lark/image-2.png)
+![创建版本](https://files.bulinbot.app/docs/source/images/lark/image-2.png)
 
 填写版本号，更新说明，可见范围后点击保存，确认发布。
 
@@ -140,12 +140,12 @@
 
 进入飞书 APP（网页版飞书无法添加机器人），点进群聊，点击右上角按钮->群机器人->添加机器人。
 
-搜索刚刚创建的机器人的名字。比如教程创建了 `AstrBot` 机器人：
+搜索刚刚创建的机器人的名字。比如教程创建了 `BulinBot` 机器人：
 
-![添加机器人](https://files.astrbot.app/docs/source/images/lark/image-9.png)
+![添加机器人](https://files.bulinbot.app/docs/source/images/lark/image-9.png)
 
 ## 🎉 大功告成
 
 在群内发送一个 `/help` 指令，机器人将做出响应。
 
-![成功](https://files.astrbot.app/docs/source/images/lark/image-13.png)
+![成功](https://files.bulinbot.app/docs/source/images/lark/image-13.png)

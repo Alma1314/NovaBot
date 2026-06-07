@@ -8,10 +8,10 @@ from openai.types.chat.chat_completion import ChatCompletion
 from openai.types.chat.chat_completion_chunk import ChatCompletionChunk
 from PIL import Image as PILImage
 
-import astrbot.core.provider.sources.openai_source as openai_source_module
-from astrbot.core.exceptions import EmptyModelOutputError
-from astrbot.core.provider.sources.groq_source import ProviderGroq
-from astrbot.core.provider.sources.openai_source import ProviderOpenAIOfficial
+import bulinbot.core.provider.sources.openai_source as openai_source_module
+from bulinbot.core.exceptions import EmptyModelOutputError
+from bulinbot.core.provider.sources.groq_source import ProviderGroq
+from bulinbot.core.provider.sources.openai_source import ProviderOpenAIOfficial
 
 
 class _ErrorWithBody(Exception):
@@ -664,7 +664,7 @@ async def test_prepare_chat_payload_materializes_context_http_image_urls(monkeyp
             return "data:image/png;base64,abcd"
 
         monkeypatch.setattr(
-            "astrbot.core.provider.sources.openai_source.download_image_by_url",
+            "bulinbot.core.provider.sources.openai_source.download_image_by_url",
             fake_download,
         )
         monkeypatch.setattr(provider, "_encode_image_file_to_data_url", fake_encode)
@@ -784,7 +784,7 @@ async def test_prepare_chat_payload_materializes_context_http_image_urls_with_de
             return str(image_path)
 
         monkeypatch.setattr(
-            "astrbot.core.provider.sources.openai_source.download_image_by_url",
+            "bulinbot.core.provider.sources.openai_source.download_image_by_url",
             fake_download,
         )
 
@@ -1100,7 +1100,7 @@ async def test_prepare_chat_payload_keeps_original_context_image_when_materializ
             return "/tmp/not-an-image"
 
         monkeypatch.setattr(
-            "astrbot.core.provider.sources.openai_source.download_image_by_url",
+            "bulinbot.core.provider.sources.openai_source.download_image_by_url",
             fake_download,
         )
         monkeypatch.setattr(

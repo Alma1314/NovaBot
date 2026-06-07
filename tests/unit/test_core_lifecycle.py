@@ -1,4 +1,4 @@
-"""Tests for AstrBotCoreLifecycle."""
+"""Tests for BulinBotCoreLifecycle."""
 
 import asyncio
 import os
@@ -6,8 +6,8 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from astrbot.core.core_lifecycle import AstrBotCoreLifecycle
-from astrbot.core.log import LogBroker
+from bulinbot.core.core_lifecycle import BulinBotCoreLifecycle
+from bulinbot.core.log import LogBroker
 
 
 @pytest.fixture
@@ -26,8 +26,8 @@ def mock_db():
 
 
 @pytest.fixture
-def mock_astrbot_config():
-    """Create a mock AstrBot config."""
+def mock_bulinbot_config():
+    """Create a mock BulinBot config."""
     config = MagicMock()
     config.get = MagicMock(return_value="")
     config.__getitem__ = MagicMock(return_value={})
@@ -35,12 +35,12 @@ def mock_astrbot_config():
     return config
 
 
-class TestAstrBotCoreLifecycleInit:
-    """Tests for AstrBotCoreLifecycle initialization."""
+class TestBulinBotCoreLifecycleInit:
+    """Tests for BulinBotCoreLifecycle initialization."""
 
     def test_init(self, mock_log_broker, mock_db):
-        """Test AstrBotCoreLifecycle initialization."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        """Test BulinBotCoreLifecycle initialization."""
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
         assert lifecycle.log_broker == mock_log_broker
         assert lifecycle.db == mock_db
@@ -52,11 +52,11 @@ class TestAstrBotCoreLifecycleInit:
         self,
         mock_log_broker,
         mock_db,
-        mock_astrbot_config,
+        mock_bulinbot_config,
         monkeypatch: pytest.MonkeyPatch,
     ):
         """Test initialization with proxy settings."""
-        mock_astrbot_config.get = MagicMock(
+        mock_bulinbot_config.get = MagicMock(
             side_effect=lambda key, default="": {
                 "http_proxy": "http://proxy.example.com:8080",
                 "no_proxy": ["localhost", "127.0.0.1"],
@@ -66,8 +66,8 @@ class TestAstrBotCoreLifecycleInit:
         monkeypatch.delenv("https_proxy", raising=False)
         monkeypatch.delenv("no_proxy", raising=False)
 
-        with patch("astrbot.core.core_lifecycle.astrbot_config", mock_astrbot_config):
-            lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        with patch("bulinbot.core.core_lifecycle.bulinbot_config", mock_bulinbot_config):
+            lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
             assert lifecycle.log_broker == mock_log_broker
             assert lifecycle.db == mock_db
@@ -81,17 +81,17 @@ class TestAstrBotCoreLifecycleInit:
         self,
         mock_log_broker,
         mock_db,
-        mock_astrbot_config,
+        mock_bulinbot_config,
         monkeypatch: pytest.MonkeyPatch,
     ):
         """Test initialization clears proxy settings when configured."""
-        mock_astrbot_config.get = MagicMock(return_value="")
+        mock_bulinbot_config.get = MagicMock(return_value="")
         # Set proxy in environment to test clearing
         monkeypatch.setenv("http_proxy", "http://old-proxy:8080")
         monkeypatch.setenv("https_proxy", "http://old-proxy:8080")
 
-        with patch("astrbot.core.core_lifecycle.astrbot_config", mock_astrbot_config):
-            lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        with patch("bulinbot.core.core_lifecycle.bulinbot_config", mock_bulinbot_config):
+            lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
             assert lifecycle.log_broker == mock_log_broker
             # Verify proxy environment variables are cleared
@@ -99,13 +99,13 @@ class TestAstrBotCoreLifecycleInit:
             assert "https_proxy" not in os.environ
 
 
-class TestAstrBotCoreLifecycleStop:
-    """Tests for AstrBotCoreLifecycle.stop method."""
+class TestBulinBotCoreLifecycleStop:
+    """Tests for BulinBotCoreLifecycle.stop method."""
 
     @pytest.mark.asyncio
     async def test_stop_without_initialize(self, mock_log_broker, mock_db):
         """Test stop without initialize should not raise errors."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
         # Set up minimal state to avoid None attribute errors
         lifecycle.temp_dir_cleaner = None
@@ -126,13 +126,13 @@ class TestAstrBotCoreLifecycleStop:
         await lifecycle.stop()
 
 
-class TestAstrBotCoreLifecycleTaskWrapper:
-    """Tests for AstrBotCoreLifecycle._task_wrapper method."""
+class TestBulinBotCoreLifecycleTaskWrapper:
+    """Tests for BulinBotCoreLifecycle._task_wrapper method."""
 
     @pytest.mark.asyncio
     async def test_task_wrapper_normal_completion(self, mock_log_broker, mock_db):
         """Test task wrapper with normal completion."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
         async def normal_task():
             pass
@@ -145,14 +145,14 @@ class TestAstrBotCoreLifecycleTaskWrapper:
     @pytest.mark.asyncio
     async def test_task_wrapper_with_exception(self, mock_log_broker, mock_db):
         """Test task wrapper with exception."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
         async def failing_task():
             raise ValueError("Test error")
 
         task = asyncio.create_task(failing_task(), name="test_task")
 
-        with patch("astrbot.core.core_lifecycle.logger") as mock_logger:
+        with patch("bulinbot.core.core_lifecycle.logger") as mock_logger:
             await lifecycle._task_wrapper(task)
 
             # Verify error was logged
@@ -161,7 +161,7 @@ class TestAstrBotCoreLifecycleTaskWrapper:
     @pytest.mark.asyncio
     async def test_task_wrapper_with_cancelled_error(self, mock_log_broker, mock_db):
         """Test task wrapper with CancelledError."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
         async def cancelled_task():
             raise asyncio.CancelledError()
@@ -169,7 +169,7 @@ class TestAstrBotCoreLifecycleTaskWrapper:
         task = asyncio.create_task(cancelled_task(), name="test_task")
 
         # Should not raise and should not log
-        with patch("astrbot.core.core_lifecycle.logger") as mock_logger:
+        with patch("bulinbot.core.core_lifecycle.logger") as mock_logger:
             await lifecycle._task_wrapper(task)
 
             # CancelledError should be handled silently
@@ -179,13 +179,13 @@ class TestAstrBotCoreLifecycleTaskWrapper:
             )
 
 
-class TestAstrBotCoreLifecycleLoadPlatform:
-    """Tests for AstrBotCoreLifecycle.load_platform method."""
+class TestBulinBotCoreLifecycleLoadPlatform:
+    """Tests for BulinBotCoreLifecycle.load_platform method."""
 
     @pytest.mark.asyncio
     async def test_load_platform(self, mock_log_broker, mock_db):
         """Test load_platform method."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
         # Set up mock platform manager
         mock_platform_manager = MagicMock()
@@ -218,20 +218,20 @@ class TestAstrBotCoreLifecycleLoadPlatform:
         assert any("inst2" in task.get_name() for task in tasks)
 
 
-class TestAstrBotCoreLifecycleErrorHandling:
-    """Tests for AstrBotCoreLifecycle error handling."""
+class TestBulinBotCoreLifecycleErrorHandling:
+    """Tests for BulinBotCoreLifecycle error handling."""
 
     @pytest.mark.asyncio
     async def test_subagent_orchestrator_error_is_logged(
-        self, mock_log_broker, mock_db, mock_astrbot_config
+        self, mock_log_broker, mock_db, mock_bulinbot_config
     ):
         """Test that subagent orchestrator init errors are logged."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
         lifecycle.provider_manager = MagicMock()
         lifecycle.provider_manager.llm_tools = MagicMock()
         lifecycle.persona_mgr = MagicMock()
-        lifecycle.astrbot_config = mock_astrbot_config
-        lifecycle.astrbot_config.get = MagicMock(return_value={})
+        lifecycle.bulinbot_config = mock_bulinbot_config
+        lifecycle.bulinbot_config.get = MagicMock(return_value={})
 
         mock_subagent = MagicMock()
         mock_subagent.reload_from_config = AsyncMock(
@@ -240,10 +240,10 @@ class TestAstrBotCoreLifecycleErrorHandling:
 
         with (
             patch(
-                "astrbot.core.core_lifecycle.SubAgentOrchestrator",
+                "bulinbot.core.core_lifecycle.SubAgentOrchestrator",
                 return_value=mock_subagent,
             ) as mock_subagent_cls,
-            patch("astrbot.core.core_lifecycle.logger") as mock_logger,
+            patch("bulinbot.core.core_lifecycle.logger") as mock_logger,
         ):
             await lifecycle._init_or_reload_subagent_orchestrator()
 
@@ -259,7 +259,7 @@ class TestAstrBotCoreLifecycleErrorHandling:
         )
 
 
-class TestAstrBotCoreLifecycleDefaultChatProviderWarning:
+class TestBulinBotCoreLifecycleDefaultChatProviderWarning:
     """Tests for startup warning when default chat provider is unset."""
 
     @staticmethod
@@ -271,7 +271,7 @@ class TestAstrBotCoreLifecycleDefaultChatProviderWarning:
     def test_warns_for_multiple_enabled_chat_providers_without_default(
         self, mock_log_broker, mock_db
     ):
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
         provider_a = self._make_provider("openai_source/model-a")
         provider_b = self._make_provider("openai_source/model-b")
         lifecycle.provider_manager = MagicMock(
@@ -280,7 +280,7 @@ class TestAstrBotCoreLifecycleDefaultChatProviderWarning:
             curr_provider_inst=provider_b,
         )
 
-        with patch("astrbot.core.core_lifecycle.logger") as mock_logger:
+        with patch("bulinbot.core.core_lifecycle.logger") as mock_logger:
             lifecycle._warn_about_unset_default_chat_provider()
 
         mock_logger.warning.assert_called_once()
@@ -288,7 +288,7 @@ class TestAstrBotCoreLifecycleDefaultChatProviderWarning:
         assert mock_logger.warning.call_args[0][2] == "openai_source/model-b"
 
     def test_warns_only_once_per_lifecycle(self, mock_log_broker, mock_db):
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
         lifecycle.provider_manager = MagicMock(
             provider_settings={"default_provider_id": ""},
             provider_insts=[
@@ -298,7 +298,7 @@ class TestAstrBotCoreLifecycleDefaultChatProviderWarning:
             curr_provider_inst=self._make_provider("openai_source/model-a"),
         )
 
-        with patch("astrbot.core.core_lifecycle.logger") as mock_logger:
+        with patch("bulinbot.core.core_lifecycle.logger") as mock_logger:
             lifecycle._warn_about_unset_default_chat_provider()
             lifecycle._warn_about_unset_default_chat_provider()
 
@@ -307,14 +307,14 @@ class TestAstrBotCoreLifecycleDefaultChatProviderWarning:
     def test_does_not_warn_with_single_enabled_chat_provider_without_default(
         self, mock_log_broker, mock_db
     ):
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
         lifecycle.provider_manager = MagicMock(
             provider_settings={"default_provider_id": ""},
             provider_insts=[self._make_provider("openai_source/model-a")],
             curr_provider_inst=self._make_provider("openai_source/model-a"),
         )
 
-        with patch("astrbot.core.core_lifecycle.logger") as mock_logger:
+        with patch("bulinbot.core.core_lifecycle.logger") as mock_logger:
             lifecycle._warn_about_unset_default_chat_provider()
 
         mock_logger.warning.assert_not_called()
@@ -322,7 +322,7 @@ class TestAstrBotCoreLifecycleDefaultChatProviderWarning:
     def test_does_not_warn_when_default_chat_provider_is_set(
         self, mock_log_broker, mock_db
     ):
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
         lifecycle.provider_manager = MagicMock(
             provider_settings={"default_provider_id": "openai_source/model-a"},
             provider_insts=[
@@ -332,7 +332,7 @@ class TestAstrBotCoreLifecycleDefaultChatProviderWarning:
             curr_provider_inst=self._make_provider("openai_source/model-a"),
         )
 
-        with patch("astrbot.core.core_lifecycle.logger") as mock_logger:
+        with patch("bulinbot.core.core_lifecycle.logger") as mock_logger:
             lifecycle._warn_about_unset_default_chat_provider()
 
         mock_logger.warning.assert_not_called()
@@ -340,7 +340,7 @@ class TestAstrBotCoreLifecycleDefaultChatProviderWarning:
     def test_warns_and_fallbacks_to_first_provider_when_curr_provider_inst_is_none(
         self, mock_log_broker, mock_db
     ):
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
         provider_a = self._make_provider("openai_source/model-a")
         provider_b = self._make_provider("openai_source/model-b")
         lifecycle.provider_manager = MagicMock(
@@ -349,7 +349,7 @@ class TestAstrBotCoreLifecycleDefaultChatProviderWarning:
             curr_provider_inst=None,
         )
 
-        with patch("astrbot.core.core_lifecycle.logger") as mock_logger:
+        with patch("bulinbot.core.core_lifecycle.logger") as mock_logger:
             lifecycle._warn_about_unset_default_chat_provider()
 
         mock_logger.warning.assert_called_once()
@@ -359,7 +359,7 @@ class TestAstrBotCoreLifecycleDefaultChatProviderWarning:
     def test_warns_when_default_provider_id_does_not_match_any_enabled_provider(
         self, mock_log_broker, mock_db
     ):
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
         lifecycle.provider_manager = MagicMock(
             provider_settings={"default_provider_id": "non-existent-id"},
             provider_insts=[
@@ -369,7 +369,7 @@ class TestAstrBotCoreLifecycleDefaultChatProviderWarning:
             curr_provider_inst=self._make_provider("openai_source/model-b"),
         )
 
-        with patch("astrbot.core.core_lifecycle.logger") as mock_logger:
+        with patch("bulinbot.core.core_lifecycle.logger") as mock_logger:
             lifecycle._warn_about_unset_default_chat_provider()
 
         mock_logger.warning.assert_called_once()
@@ -377,15 +377,15 @@ class TestAstrBotCoreLifecycleDefaultChatProviderWarning:
         assert mock_logger.warning.call_args[0][2] == "openai_source/model-b"
 
 
-class TestAstrBotCoreLifecycleInitialize:
-    """Tests for AstrBotCoreLifecycle.initialize method."""
+class TestBulinBotCoreLifecycleInitialize:
+    """Tests for BulinBotCoreLifecycle.initialize method."""
 
     @pytest.mark.asyncio
     async def test_initialize_sets_up_all_components(
-        self, mock_log_broker, mock_db, mock_astrbot_config
+        self, mock_log_broker, mock_db, mock_bulinbot_config
     ):
         """Test that initialize sets up all required components in correct order."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
         # Mock all the dependencies
         mock_db.initialize = AsyncMock()
@@ -395,9 +395,9 @@ class TestAstrBotCoreLifecycleInitialize:
         mock_umop_config_router = MagicMock()
         mock_umop_config_router.initialize = AsyncMock()
 
-        mock_astrbot_config_mgr = MagicMock()
-        mock_astrbot_config_mgr.default_conf = {}
-        mock_astrbot_config_mgr.confs = {}
+        mock_bulinbot_config_mgr = MagicMock()
+        mock_bulinbot_config_mgr.default_conf = {}
+        mock_bulinbot_config_mgr.confs = {}
 
         mock_persona_mgr = MagicMock()
         mock_persona_mgr.initialize = AsyncMock()
@@ -426,68 +426,68 @@ class TestAstrBotCoreLifecycleInitialize:
         mock_pipeline_scheduler = MagicMock()
         mock_pipeline_scheduler.initialize = AsyncMock()
 
-        mock_astrbot_updator = MagicMock()
+        mock_bulinbot_updator = MagicMock()
 
         mock_event_bus = MagicMock()
 
         with (
-            patch("astrbot.core.core_lifecycle.astrbot_config", mock_astrbot_config),
-            patch("astrbot.core.core_lifecycle.html_renderer", mock_html_renderer),
+            patch("bulinbot.core.core_lifecycle.bulinbot_config", mock_bulinbot_config),
+            patch("bulinbot.core.core_lifecycle.html_renderer", mock_html_renderer),
             patch(
-                "astrbot.core.core_lifecycle.UmopConfigRouter",
+                "bulinbot.core.core_lifecycle.UmopConfigRouter",
                 return_value=mock_umop_config_router,
             ),
             patch(
-                "astrbot.core.core_lifecycle.AstrBotConfigManager",
-                return_value=mock_astrbot_config_mgr,
+                "bulinbot.core.core_lifecycle.BulinBotConfigManager",
+                return_value=mock_bulinbot_config_mgr,
             ),
             patch(
-                "astrbot.core.core_lifecycle.PersonaManager",
+                "bulinbot.core.core_lifecycle.PersonaManager",
                 return_value=mock_persona_mgr,
             ),
             patch(
-                "astrbot.core.core_lifecycle.ProviderManager",
+                "bulinbot.core.core_lifecycle.ProviderManager",
                 return_value=mock_provider_manager,
             ),
             patch(
-                "astrbot.core.core_lifecycle.PlatformManager",
+                "bulinbot.core.core_lifecycle.PlatformManager",
                 return_value=mock_platform_manager,
             ),
             patch(
-                "astrbot.core.core_lifecycle.ConversationManager",
+                "bulinbot.core.core_lifecycle.ConversationManager",
                 return_value=mock_conversation_manager,
             ),
             patch(
-                "astrbot.core.core_lifecycle.PlatformMessageHistoryManager",
+                "bulinbot.core.core_lifecycle.PlatformMessageHistoryManager",
                 return_value=mock_platform_message_history_manager,
             ),
             patch(
-                "astrbot.core.core_lifecycle.KnowledgeBaseManager",
+                "bulinbot.core.core_lifecycle.KnowledgeBaseManager",
                 return_value=mock_kb_manager,
             ),
             patch(
-                "astrbot.core.core_lifecycle.CronJobManager",
+                "bulinbot.core.core_lifecycle.CronJobManager",
                 return_value=mock_cron_manager,
             ),
             patch(
-                "astrbot.core.core_lifecycle.Context", return_value=mock_star_context
+                "bulinbot.core.core_lifecycle.Context", return_value=mock_star_context
             ),
             patch(
-                "astrbot.core.core_lifecycle.PluginManager",
+                "bulinbot.core.core_lifecycle.PluginManager",
                 return_value=mock_plugin_manager,
             ),
             patch(
-                "astrbot.core.core_lifecycle.PipelineScheduler",
+                "bulinbot.core.core_lifecycle.PipelineScheduler",
                 return_value=mock_pipeline_scheduler,
             ),
             patch(
-                "astrbot.core.core_lifecycle.AstrBotUpdator",
-                return_value=mock_astrbot_updator,
+                "bulinbot.core.core_lifecycle.BulinBotUpdator",
+                return_value=mock_bulinbot_updator,
             ),
-            patch("astrbot.core.core_lifecycle.EventBus", return_value=mock_event_bus),
-            patch("astrbot.core.core_lifecycle.migra", new_callable=AsyncMock),
+            patch("bulinbot.core.core_lifecycle.EventBus", return_value=mock_event_bus),
+            patch("bulinbot.core.core_lifecycle.migra", new_callable=AsyncMock),
             patch(
-                "astrbot.core.core_lifecycle.update_llm_metadata",
+                "bulinbot.core.core_lifecycle.update_llm_metadata",
                 new_callable=AsyncMock,
             ),
         ):
@@ -522,10 +522,10 @@ class TestAstrBotCoreLifecycleInitialize:
 
     @pytest.mark.asyncio
     async def test_initialize_handles_migration_failure(
-        self, mock_log_broker, mock_db, mock_astrbot_config
+        self, mock_log_broker, mock_db, mock_bulinbot_config
     ):
         """Test that initialize handles migration failures gracefully."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
         mock_db.initialize = AsyncMock()
 
@@ -535,77 +535,77 @@ class TestAstrBotCoreLifecycleInitialize:
         mock_umop_config_router = MagicMock()
         mock_umop_config_router.initialize = AsyncMock()
 
-        mock_astrbot_config_mgr = MagicMock()
-        mock_astrbot_config_mgr.default_conf = {}
-        mock_astrbot_config_mgr.confs = {}
+        mock_bulinbot_config_mgr = MagicMock()
+        mock_bulinbot_config_mgr.default_conf = {}
+        mock_bulinbot_config_mgr.confs = {}
 
         # Mock components that need to be created for initialize to continue
         with (
-            patch("astrbot.core.core_lifecycle.astrbot_config", mock_astrbot_config),
-            patch("astrbot.core.core_lifecycle.html_renderer", mock_html_renderer),
+            patch("bulinbot.core.core_lifecycle.bulinbot_config", mock_bulinbot_config),
+            patch("bulinbot.core.core_lifecycle.html_renderer", mock_html_renderer),
             patch(
-                "astrbot.core.core_lifecycle.UmopConfigRouter",
+                "bulinbot.core.core_lifecycle.UmopConfigRouter",
                 return_value=mock_umop_config_router,
             ),
             patch(
-                "astrbot.core.core_lifecycle.AstrBotConfigManager",
-                return_value=mock_astrbot_config_mgr,
+                "bulinbot.core.core_lifecycle.BulinBotConfigManager",
+                return_value=mock_bulinbot_config_mgr,
             ),
             patch(
-                "astrbot.core.core_lifecycle.PersonaManager",
+                "bulinbot.core.core_lifecycle.PersonaManager",
                 return_value=MagicMock(initialize=AsyncMock()),
             ),
             patch(
-                "astrbot.core.core_lifecycle.ProviderManager",
+                "bulinbot.core.core_lifecycle.ProviderManager",
                 return_value=MagicMock(initialize=AsyncMock()),
             ),
             patch(
-                "astrbot.core.core_lifecycle.PlatformManager",
+                "bulinbot.core.core_lifecycle.PlatformManager",
                 return_value=MagicMock(initialize=AsyncMock()),
             ),
             patch(
-                "astrbot.core.core_lifecycle.ConversationManager",
+                "bulinbot.core.core_lifecycle.ConversationManager",
                 return_value=MagicMock(),
             ),
             patch(
-                "astrbot.core.core_lifecycle.PlatformMessageHistoryManager",
+                "bulinbot.core.core_lifecycle.PlatformMessageHistoryManager",
                 return_value=MagicMock(),
             ),
             patch(
-                "astrbot.core.core_lifecycle.KnowledgeBaseManager",
+                "bulinbot.core.core_lifecycle.KnowledgeBaseManager",
                 return_value=MagicMock(initialize=AsyncMock()),
             ),
             patch(
-                "astrbot.core.core_lifecycle.CronJobManager",
+                "bulinbot.core.core_lifecycle.CronJobManager",
                 return_value=MagicMock(),
             ),
             patch(
-                "astrbot.core.core_lifecycle.Context",
+                "bulinbot.core.core_lifecycle.Context",
                 return_value=MagicMock(_register_tasks=[]),
             ),
             patch(
-                "astrbot.core.core_lifecycle.PluginManager",
+                "bulinbot.core.core_lifecycle.PluginManager",
                 return_value=MagicMock(reload=AsyncMock()),
             ),
             patch(
-                "astrbot.core.core_lifecycle.PipelineScheduler",
+                "bulinbot.core.core_lifecycle.PipelineScheduler",
                 return_value=MagicMock(initialize=AsyncMock()),
             ),
             patch(
-                "astrbot.core.core_lifecycle.AstrBotUpdator",
+                "bulinbot.core.core_lifecycle.BulinBotUpdator",
                 return_value=MagicMock(),
             ),
             patch(
-                "astrbot.core.core_lifecycle.EventBus",
+                "bulinbot.core.core_lifecycle.EventBus",
                 return_value=MagicMock(),
             ),
             patch(
-                "astrbot.core.core_lifecycle.migra",
+                "bulinbot.core.core_lifecycle.migra",
                 AsyncMock(side_effect=Exception("Migration failed")),
             ),
-            patch("astrbot.core.core_lifecycle.logger") as mock_logger,
+            patch("bulinbot.core.core_lifecycle.logger") as mock_logger,
             patch(
-                "astrbot.core.core_lifecycle.update_llm_metadata",
+                "bulinbot.core.core_lifecycle.update_llm_metadata",
                 new_callable=AsyncMock,
             ),
         ):
@@ -616,13 +616,13 @@ class TestAstrBotCoreLifecycleInitialize:
             mock_logger.error.assert_called()
 
 
-class TestAstrBotCoreLifecycleStart:
-    """Tests for AstrBotCoreLifecycle.start method."""
+class TestBulinBotCoreLifecycleStart:
+    """Tests for BulinBotCoreLifecycle.start method."""
 
     @pytest.mark.asyncio
     async def test_start_loads_event_bus_and_runs(self, mock_log_broker, mock_db):
         """Test that start loads event bus and runs tasks."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
         # Set up minimal state
         lifecycle.event_bus = MagicMock()
@@ -654,9 +654,9 @@ class TestAstrBotCoreLifecycleStart:
 
         with (
             patch(
-                "astrbot.core.core_lifecycle.star_handlers_registry"
+                "bulinbot.core.core_lifecycle.star_handlers_registry"
             ) as mock_registry,
-            patch("astrbot.core.core_lifecycle.logger"),
+            patch("bulinbot.core.core_lifecycle.logger"),
         ):
             mock_registry.get_handlers_by_event_type = MagicMock(return_value=[])
 
@@ -679,9 +679,9 @@ class TestAstrBotCoreLifecycleStart:
                 pass
 
     @pytest.mark.asyncio
-    async def test_start_calls_on_astrbot_loaded_hook(self, mock_log_broker, mock_db):
-        """Test that start calls the OnAstrBotLoadedEvent handlers."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+    async def test_start_calls_on_bulinbot_loaded_hook(self, mock_log_broker, mock_db):
+        """Test that start calls the OnBulinBotLoadedEvent handlers."""
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
         # Set up minimal state
         lifecycle.event_bus = MagicMock()
@@ -718,13 +718,13 @@ class TestAstrBotCoreLifecycleStart:
 
         with (
             patch(
-                "astrbot.core.core_lifecycle.star_handlers_registry"
+                "bulinbot.core.core_lifecycle.star_handlers_registry"
             ) as mock_registry,
             patch(
-                "astrbot.core.core_lifecycle.star_map",
+                "bulinbot.core.core_lifecycle.star_map",
                 {"test_module": MagicMock(name="Test Handler")},
             ),
-            patch("astrbot.core.core_lifecycle.logger"),
+            patch("bulinbot.core.core_lifecycle.logger"),
         ):
             mock_registry.get_handlers_by_event_type = MagicMock(
                 return_value=[mock_handler]
@@ -744,13 +744,13 @@ class TestAstrBotCoreLifecycleStart:
             mock_handler.handler.assert_awaited_once()
 
 
-class TestAstrBotCoreLifecycleStopAdditional:
-    """Additional tests for AstrBotCoreLifecycle.stop method."""
+class TestBulinBotCoreLifecycleStopAdditional:
+    """Additional tests for BulinBotCoreLifecycle.stop method."""
 
     @pytest.mark.asyncio
     async def test_stop_cancels_all_tasks(self, mock_log_broker, mock_db):
         """Test that stop cancels all current tasks."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
         lifecycle.temp_dir_cleaner = None
         lifecycle.cron_manager = None
@@ -790,7 +790,7 @@ class TestAstrBotCoreLifecycleStopAdditional:
     @pytest.mark.asyncio
     async def test_stop_terminates_all_managers(self, mock_log_broker, mock_db):
         """Test that stop terminates all managers in correct order."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
         lifecycle.temp_dir_cleaner = None
         lifecycle.cron_manager = None
@@ -824,7 +824,7 @@ class TestAstrBotCoreLifecycleStopAdditional:
         self, mock_log_broker, mock_db
     ):
         """Test that stop handles plugin termination errors gracefully."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
         lifecycle.temp_dir_cleaner = None
         lifecycle.cron_manager = None
@@ -855,7 +855,7 @@ class TestAstrBotCoreLifecycleStopAdditional:
 
         lifecycle.curr_tasks = []
 
-        with patch("astrbot.core.core_lifecycle.logger") as mock_logger:
+        with patch("bulinbot.core.core_lifecycle.logger") as mock_logger:
             # Should not raise
             await lifecycle.stop()
 
@@ -863,15 +863,15 @@ class TestAstrBotCoreLifecycleStopAdditional:
             mock_logger.warning.assert_called()
 
 
-class TestAstrBotCoreLifecycleRestart:
-    """Tests for AstrBotCoreLifecycle.restart method."""
+class TestBulinBotCoreLifecycleRestart:
+    """Tests for BulinBotCoreLifecycle.restart method."""
 
     @pytest.mark.asyncio
     async def test_restart_terminates_managers_and_starts_thread(
         self, mock_log_broker, mock_db
     ):
         """Test that restart terminates managers and starts reboot thread."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
         lifecycle.provider_manager = MagicMock()
         lifecycle.provider_manager.terminate = AsyncMock()
@@ -884,9 +884,9 @@ class TestAstrBotCoreLifecycleRestart:
 
         lifecycle.dashboard_shutdown_event = asyncio.Event()
 
-        lifecycle.astrbot_updator = MagicMock()
+        lifecycle.bulinbot_updator = MagicMock()
 
-        with patch("astrbot.core.core_lifecycle.threading.Thread") as mock_thread:
+        with patch("bulinbot.core.core_lifecycle.threading.Thread") as mock_thread:
             await lifecycle.restart()
 
             # Verify managers were terminated
@@ -899,18 +899,18 @@ class TestAstrBotCoreLifecycleRestart:
             mock_thread.return_value.start.assert_called_once()
 
 
-class TestAstrBotCoreLifecycleLoadPipelineScheduler:
-    """Tests for AstrBotCoreLifecycle.load_pipeline_scheduler method."""
+class TestBulinBotCoreLifecycleLoadPipelineScheduler:
+    """Tests for BulinBotCoreLifecycle.load_pipeline_scheduler method."""
 
     @pytest.mark.asyncio
     async def test_load_pipeline_scheduler_creates_schedulers(
-        self, mock_log_broker, mock_db, mock_astrbot_config
+        self, mock_log_broker, mock_db, mock_bulinbot_config
     ):
         """Test that load_pipeline_scheduler creates schedulers for each config."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
-        mock_astrbot_config_mgr = MagicMock()
-        mock_astrbot_config_mgr.confs = {
+        mock_bulinbot_config_mgr = MagicMock()
+        mock_bulinbot_config_mgr.confs = {
             "config1": MagicMock(),
             "config2": MagicMock(),
         }
@@ -925,14 +925,14 @@ class TestAstrBotCoreLifecycleLoadPipelineScheduler:
 
         with (
             patch(
-                "astrbot.core.core_lifecycle.PipelineScheduler"
+                "bulinbot.core.core_lifecycle.PipelineScheduler"
             ) as mock_scheduler_cls,
-            patch("astrbot.core.core_lifecycle.PipelineContext"),
+            patch("bulinbot.core.core_lifecycle.PipelineContext"),
         ):
             # Configure mock to return different schedulers
             mock_scheduler_cls.side_effect = [mock_scheduler1, mock_scheduler2]
 
-            lifecycle.astrbot_config_mgr = mock_astrbot_config_mgr
+            lifecycle.bulinbot_config_mgr = mock_bulinbot_config_mgr
             lifecycle.plugin_manager = mock_plugin_manager
 
             result = await lifecycle.load_pipeline_scheduler()
@@ -944,13 +944,13 @@ class TestAstrBotCoreLifecycleLoadPipelineScheduler:
 
     @pytest.mark.asyncio
     async def test_reload_pipeline_scheduler_updates_existing(
-        self, mock_log_broker, mock_db, mock_astrbot_config
+        self, mock_log_broker, mock_db, mock_bulinbot_config
     ):
         """Test that reload_pipeline_scheduler updates existing scheduler."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
-        mock_astrbot_config_mgr = MagicMock()
-        mock_astrbot_config_mgr.confs = {
+        mock_bulinbot_config_mgr = MagicMock()
+        mock_bulinbot_config_mgr.confs = {
             "config1": MagicMock(),
         }
 
@@ -959,15 +959,15 @@ class TestAstrBotCoreLifecycleLoadPipelineScheduler:
         mock_new_scheduler = MagicMock()
         mock_new_scheduler.initialize = AsyncMock()
 
-        lifecycle.astrbot_config_mgr = mock_astrbot_config_mgr
+        lifecycle.bulinbot_config_mgr = mock_bulinbot_config_mgr
         lifecycle.plugin_manager = mock_plugin_manager
         lifecycle.pipeline_scheduler_mapping = {}
 
         with (
             patch(
-                "astrbot.core.core_lifecycle.PipelineScheduler"
+                "bulinbot.core.core_lifecycle.PipelineScheduler"
             ) as mock_scheduler_cls,
-            patch("astrbot.core.core_lifecycle.PipelineContext"),
+            patch("bulinbot.core.core_lifecycle.PipelineContext"),
         ):
             mock_scheduler_cls.return_value = mock_new_scheduler
 
@@ -982,12 +982,12 @@ class TestAstrBotCoreLifecycleLoadPipelineScheduler:
         self, mock_log_broker, mock_db
     ):
         """Test that reload_pipeline_scheduler raises error for missing config."""
-        lifecycle = AstrBotCoreLifecycle(mock_log_broker, mock_db)
+        lifecycle = BulinBotCoreLifecycle(mock_log_broker, mock_db)
 
-        mock_astrbot_config_mgr = MagicMock()
-        mock_astrbot_config_mgr.confs = {}
+        mock_bulinbot_config_mgr = MagicMock()
+        mock_bulinbot_config_mgr.confs = {}
 
-        lifecycle.astrbot_config_mgr = mock_astrbot_config_mgr
+        lifecycle.bulinbot_config_mgr = mock_bulinbot_config_mgr
 
         with pytest.raises(ValueError, match="配置文件 .* 不存在"):
             await lifecycle.reload_pipeline_scheduler("nonexistent")

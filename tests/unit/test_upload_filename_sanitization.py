@@ -1,6 +1,6 @@
 """Tests for upload filename sanitization."""
 
-from astrbot.dashboard.routes.chat import _sanitize_upload_filename
+from bulinbot.dashboard.routes.chat import _sanitize_upload_filename
 
 
 def test_sanitize_upload_filename_strips_posix_traversal():

@@ -3,9 +3,9 @@ from types import SimpleNamespace
 
 import pytest
 
-from astrbot.core.agent.run_context import ContextWrapper
-from astrbot.core.tools.computer_tools.shipyard_neo.browser import BrowserExecTool
-from astrbot.core.tools.computer_tools.shipyard_neo.neo_skills import (
+from bulinbot.core.agent.run_context import ContextWrapper
+from bulinbot.core.tools.computer_tools.shipyard_neo.browser import BrowserExecTool
+from bulinbot.core.tools.computer_tools.shipyard_neo.neo_skills import (
     GetExecutionHistoryTool,
 )
 
@@ -39,8 +39,8 @@ def _make_run_context(require_admin: bool, role: str = "member") -> ContextWrapp
         unified_msg_origin="qq_official:friend:user-1",
         get_sender_id=lambda: "user-1",
     )
-    astr_ctx = SimpleNamespace(context=config_holder, event=event)
-    return ContextWrapper(context=astr_ctx)
+    bulin_ctx = SimpleNamespace(context=config_holder, event=event)
+    return ContextWrapper(context=bulin_ctx)
 
 
 @pytest.mark.asyncio
@@ -51,7 +51,7 @@ async def test_browser_tool_allows_non_admin_when_admin_requirement_disabled(
         return SimpleNamespace(browser=_FakeBrowser())
 
     monkeypatch.setattr(
-        "astrbot.core.tools.computer_tools.shipyard_neo.browser.get_booter",
+        "bulinbot.core.tools.computer_tools.shipyard_neo.browser.get_booter",
         _fake_get_booter,
     )
 
@@ -74,7 +74,7 @@ async def test_neo_skill_tool_allows_non_admin_when_admin_requirement_disabled(
         )
 
     monkeypatch.setattr(
-        "astrbot.core.tools.computer_tools.shipyard_neo.neo_skills.get_booter",
+        "bulinbot.core.tools.computer_tools.shipyard_neo.neo_skills.get_booter",
         _fake_get_booter,
     )
 

@@ -1,16 +1,16 @@
 
-# AstrBot Knowledge Base
+# BulinBot Knowledge Base
 
 > [!TIP]
-> Requires AstrBot version >= 4.5.0.
+> Requires BulinBot version >= 4.5.0.
 
-![Knowledge Base Preview](https://files.astrbot.app/docs/en/use/image-3.png)
+![Knowledge Base Preview](https://files.bulinbot.app/docs/en/use/image-3.png)
 
 ## Configuring Embedding Model
 
 Open the service provider page, click "Add Service Provider", and select Embedding.
 
-Currently, AstrBot supports embedding vector services compatible with OpenAI API and Gemini API.
+Currently, BulinBot supports embedding vector services compatible with OpenAI API and Gemini API.
 
 Click on the provider card above to enter the configuration page and fill in the configuration.
 
@@ -24,11 +24,11 @@ Similar to configuring the embedding model, open the service provider page, clic
 
 ## Creating a Knowledge Base
 
-AstrBot supports multiple knowledge base management. During chat, you can **freely specify which knowledge base to use**.
+BulinBot supports multiple knowledge base management. During chat, you can **freely specify which knowledge base to use**.
 
 Enter the knowledge base page and click "Create Knowledge Base", as shown below:
 
-![image](https://files.astrbot.app/docs/source/images/knowledge-base/image.png)
+![image](https://files.bulinbot.app/docs/source/images/knowledge-base/image.png)
 
 Fill in the relevant information. In the embedding model dropdown menu, you will see the embedding model and reranker model you just created (reranker model is optional).
 
@@ -39,7 +39,7 @@ Fill in the relevant information. In the embedding model dropdown menu, you will
 
 After creating a knowledge base, you can upload documents to it. Up to 10 files can be uploaded simultaneously, with a maximum size of 128 MB per file.
 
-![Upload Files](https://files.astrbot.app/docs/en/use/image-4.png)
+![Upload Files](https://files.bulinbot.app/docs/en/use/image-4.png)
 
 ## Using the Knowledge Base
 

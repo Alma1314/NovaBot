@@ -1,27 +1,27 @@
 version: '3.8'
 
-# 当接入 QQ NapCat 时，请使用这个 compose 文件一键部署: https://github.com/NapNeko/NapCat-Docker/blob/main/compose/astrbot.yml
+# 当接入 QQ NapCat 时，请使用这个 compose 文件一键部署: https://github.com/NapNeko/NapCat-Docker/blob/main/compose/bulinbot.yml
 
 services:
-  astrbot:
-    image: soulter/astrbot:latest
-    container_name: astrbot
+  bulinbot:
+    image: soulter/bulinbot:latest
+    container_name: bulinbot
     restart: always
-    ports: # mappings description: https://github.com/AstrBotDevs/AstrBot/issues/497
-      - "6185:6185" # 必选，AstrBot WebUI 端口
+    ports: # mappings description: https://github.com/BulinBotDevs/BulinBot/issues/497
+      - "6185:6185" # 必选，BulinBot WebUI 端口
       - "6199:6199" # 可选, QQ 个人号 WebSocket 端口
     environment:
       - TZ=Asia/Shanghai
     volumes:
-      - ${PWD}/data:/AstrBot/data
+      - ${PWD}/data:/BulinBot/data
       # - /etc/timezone:/etc/timezone:ro
       - /etc/localtime:/etc/localtime:ro
     networks:
-      - astrbot_network
+      - bulinbot_network
 
   shipyard:
     image: soulter/shipyard-bay:latest
-    container_name: astrbot_shipyard
+    container_name: bulinbot_shipyard
     # ports:
     #   - "8156:8156"
     environment:
@@ -31,18 +31,18 @@ services:
       - MAX_SHIP_NUM=10
       - BEHAVIOR_AFTER_MAX_SHIP=reject
       - DOCKER_IMAGE=soulter/shipyard-ship:latest
-      - DOCKER_NETWORK=astrbot_network
+      - DOCKER_NETWORK=bulinbot_network
       - SHIP_DATA_DIR=${PWD}/data/shipyard/ship_mnt_data
       - DEFAULT_SHIP_CPUS=1.0
       - DEFAULT_SHIP_MEMORY=512m
     volumes:
       - ${PWD}/data/shipyard/bay_data:/app/data
-      - ${PWD}/data/temp:/AstrBot/data/temp           # Bind the local temp directory to the sandbox so that the uploaded file can be accessed in the sandbox
+      - ${PWD}/data/temp:/BulinBot/data/temp           # Bind the local temp directory to the sandbox so that the uploaded file can be accessed in the sandbox
       - /var/run/docker.sock:/var/run/docker.sock:ro
     networks:
-      - astrbot_network
+      - bulinbot_network
 
 networks:
-  astrbot_network:
-    name: astrbot_network
+  bulinbot_network:
+    name: bulinbot_network
     driver: bridge

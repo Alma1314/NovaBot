@@ -4,8 +4,8 @@ from unittest.mock import AsyncMock
 
 
 import aiohttp
-from astrbot.api.platform import AstrBotMessage, MessageType
-from astrbot.core.message.components import (
+from bulinbot.api.platform import BulinBotMessage, MessageType
+from bulinbot.core.message.components import (
     File,
     Record,
 )
@@ -96,8 +96,8 @@ def mock_record_message(input: str):
     return message
 
 
-def mock_astrbot_message():
-    message = AstrBotMessage()
+def mock_bulinbot_message():
+    message = BulinBotMessage()
     message.type = MessageType.OTHER_MESSAGE
     message.group_id = "test"
     message.session_id = "test"

@@ -8,7 +8,7 @@ import webfontDl from 'vite-plugin-webfont-dl';
 import { runMdiSubset } from './scripts/subset-mdi-font.mjs';
 
 const t2iShikiRuntimePath = fileURLToPath(
-  new URL('../astrbot/core/utils/t2i/template/shiki_runtime.iife.js', import.meta.url)
+  new URL('../bulinbot/core/utils/t2i/template/shiki_runtime.iife.js', import.meta.url)
 );
 
 // Vite plugin: run MDI icon font subsetting (build only)

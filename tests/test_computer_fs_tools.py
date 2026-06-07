@@ -10,11 +10,11 @@ import pytest
 from mcp.types import CallToolResult, ImageContent
 from PIL import Image
 
-from astrbot.core.agent.run_context import ContextWrapper
-from astrbot.core.computer import file_read_utils
-from astrbot.core.computer.booters.local import LocalBooter
-from astrbot.core.tools.computer_tools import fs as fs_tools
-from astrbot.core.tools.computer_tools import util as computer_util
+from bulinbot.core.agent.run_context import ContextWrapper
+from bulinbot.core.computer import file_read_utils
+from bulinbot.core.computer.booters.local import LocalBooter
+from bulinbot.core.tools.computer_tools import fs as fs_tools
+from bulinbot.core.tools.computer_tools import util as computer_util
 
 
 def _make_context(
@@ -37,8 +37,8 @@ def _make_context(
         unified_msg_origin=umo,
         get_sender_id=lambda: "user-1",
     )
-    astr_ctx = SimpleNamespace(context=config_holder, event=event)
-    return ContextWrapper(context=astr_ctx)
+    bulin_ctx = SimpleNamespace(context=config_holder, event=event)
+    return ContextWrapper(context=bulin_ctx)
 
 
 def _setup_local_fs_tools(
@@ -58,27 +58,27 @@ def _setup_local_fs_tools(
 
     monkeypatch.setattr(
         computer_util,
-        "get_astrbot_workspaces_path",
+        "get_bulinbot_workspaces_path",
         lambda: str(workspaces_root),
     )
     monkeypatch.setattr(
         fs_tools,
-        "get_astrbot_skills_path",
+        "get_bulinbot_skills_path",
         lambda: str(skills_root),
     )
     monkeypatch.setattr(
         fs_tools,
-        "get_astrbot_plugin_path",
+        "get_bulinbot_plugin_path",
         lambda: str(plugins_root),
     )
     monkeypatch.setattr(
         fs_tools,
-        "get_astrbot_temp_path",
+        "get_bulinbot_temp_path",
         lambda: str(temp_root),
     )
     monkeypatch.setattr(
         file_read_utils,
-        "get_astrbot_temp_path",
+        "get_bulinbot_temp_path",
         lambda: str(temp_root),
     )
 
@@ -199,7 +199,7 @@ async def test_restricted_local_member_can_read_plugin_provided_skill(
     plugin_skill = (
         tmp_path
         / "plugins"
-        / "astrbot_plugin_demo"
+        / "bulinbot_plugin_demo"
         / "skills"
         / "demo-skill"
         / "SKILL.md"
@@ -224,7 +224,7 @@ async def test_restricted_local_member_can_read_plugin_skill_inventory_even_if_p
     plugin_skill = (
         tmp_path
         / "plugins"
-        / "astrbot_plugin_demo"
+        / "bulinbot_plugin_demo"
         / "skills"
         / "demo-skill"
         / "SKILL.md"
@@ -249,7 +249,7 @@ async def test_restricted_local_member_cannot_write_plugin_provided_skill(
     plugin_skill = (
         tmp_path
         / "plugins"
-        / "astrbot_plugin_demo"
+        / "bulinbot_plugin_demo"
         / "skills"
         / "demo-skill"
         / "SKILL.md"

@@ -14,9 +14,9 @@ $cjk-mono-fallback: 'PingFang SC', 'PingFang TC', 'Hiragino Sans GB', 'Noto Sans
 $code-text-color: #111827 !default;
 
 :root {
-  --astrbot-font-cjk-sans: #{$cjk-sans-fallback};
-  --astrbot-font-cjk-mono: #{$cjk-mono-fallback};
-  --astrbot-code-color: #{$code-text-color};
+  --bulinbot-font-cjk-sans: #{$cjk-sans-fallback};
+  --bulinbot-font-cjk-mono: #{$cjk-mono-fallback};
+  --bulinbot-code-color: #{$code-text-color};
 }
 
 $body-font-family: 'Outfit', 'Noto Sans', $cjk-sans-fallback, sans-serif !default;

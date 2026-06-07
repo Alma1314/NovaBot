@@ -1,5 +1,5 @@
 <script setup>
-import AstrBotConfig from "@/components/shared/AstrBotConfig.vue";
+import BulinBotConfig from "@/components/shared/BulinBotConfig.vue";
 import ConsoleDisplayer from "@/components/shared/ConsoleDisplayer.vue";
 import ReadmeDialog from "@/components/shared/ReadmeDialog.vue";
 import ProxySelector from "@/components/shared/ProxySelector.vue";
@@ -280,7 +280,7 @@ const updateDialogPluginLogo = computed(() => {
         {{
           selectedDetailTab === "market"
             ? tm("tabs.market")
-            : tm("titles.installedAstrBotPlugins")
+            : tm("titles.installedBulinBotPlugins")
         }}
         <v-icon icon="mdi-chevron-right" size="24" class="mx-1" />
         {{ selectedPluginId }}
@@ -376,7 +376,7 @@ const updateDialogPluginLogo = computed(() => {
         <v-btn
           variant="text"
           prepend-icon="mdi-book-open-variant"
-          href="https://docs.astrbot.app/dev/star/plugin-new.html"
+          href="https://docs.bulinbot.app/dev/star/plugin-new.html"
           rel="noopener noreferrer"
           target="_blank"
           color="primary"
@@ -394,7 +394,7 @@ const updateDialogPluginLogo = computed(() => {
         <v-btn
           variant="text"
           prepend-icon="mdi-github"
-          href="https://github.com/AstrBotDevs/AstrBot_Plugins_Collection"
+          href="https://github.com/BulinBotDevs/BulinBot_Plugins_Collection"
           target="_blank"
           color="primary"
           class="text-none"
@@ -413,7 +413,7 @@ const updateDialogPluginLogo = computed(() => {
       }}</v-card-title>
       <v-card-text>
         <div style="max-height: 60vh; overflow-y: auto; padding-right: 8px">
-          <AstrBotConfig
+          <BulinBotConfig
             v-if="extension_config.metadata"
             :metadata="extension_config.metadata"
             :iterable="extension_config.config"
@@ -678,14 +678,14 @@ const updateDialogPluginLogo = computed(() => {
 
           <div v-if="selectedInstallPlugin" class="mt-4">
             <v-chip
-              v-if="selectedInstallPlugin.astrbot_version"
+              v-if="selectedInstallPlugin.bulinbot_version"
               size="small"
               color="secondary"
               variant="outlined"
               class="mr-2 mb-2"
             >
-              {{ tm("card.status.astrbotVersion") }}:
-              {{ selectedInstallPlugin.astrbot_version }}
+              {{ tm("card.status.bulinbotVersion") }}:
+              {{ selectedInstallPlugin.bulinbot_version }}
             </v-chip>
             <v-chip
               v-if="
@@ -706,7 +706,7 @@ const updateDialogPluginLogo = computed(() => {
             </v-chip>
             <v-alert
               v-if="
-                selectedInstallPlugin.astrbot_version &&
+                selectedInstallPlugin.bulinbot_version &&
                 installCompat.checked &&
                 !installCompat.compatible
               "
@@ -813,14 +813,14 @@ const updateDialogPluginLogo = computed(() => {
 
                 <div v-if="selectedInstallPlugin" class="mb-3">
                   <v-chip
-                    v-if="selectedInstallPlugin.astrbot_version"
+                    v-if="selectedInstallPlugin.bulinbot_version"
                     size="small"
                     color="secondary"
                     variant="outlined"
                     class="mr-2 mb-2"
                   >
-                    {{ tm("card.status.astrbotVersion") }}:
-                    {{ selectedInstallPlugin.astrbot_version }}
+                    {{ tm("card.status.bulinbotVersion") }}:
+                    {{ selectedInstallPlugin.bulinbot_version }}
                   </v-chip>
                   <v-chip
                     v-if="
@@ -842,7 +842,7 @@ const updateDialogPluginLogo = computed(() => {
                   </v-chip>
                   <v-alert
                     v-if="
-                      selectedInstallPlugin.astrbot_version &&
+                      selectedInstallPlugin.bulinbot_version &&
                       installCompat.checked &&
                       !installCompat.compatible
                     "

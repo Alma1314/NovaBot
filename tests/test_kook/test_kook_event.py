@@ -1,8 +1,8 @@
 import json
 
 import pytest
-from astrbot.api.platform import PlatformMetadata, Unknown
-from astrbot.core.message.components import (
+from bulinbot.api.platform import PlatformMetadata, Unknown
+from bulinbot.core.message.components import (
     Image,
     Plain,
     Video,
@@ -14,10 +14,10 @@ from astrbot.core.message.components import (
 )
 
 
-from astrbot.core.platform.sources.kook.kook_event import KookEvent
-from astrbot.core.platform.sources.kook.kook_types import KookMessageType, OrderMessage
+from bulinbot.core.platform.sources.kook.kook_event import KookEvent
+from bulinbot.core.platform.sources.kook.kook_types import KookMessageType, OrderMessage
 from tests.test_kook.shared import (
-    mock_astrbot_message,
+    mock_bulinbot_message,
     mock_file_message,
     mock_kook_client,
     mock_record_message,
@@ -140,7 +140,7 @@ async def test_kook_event_warp_message(
 
     event = KookEvent(
         "",
-        mock_astrbot_message(),
+        mock_bulinbot_message(),
         PlatformMetadata(
             name="test",
             id="test",

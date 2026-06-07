@@ -152,7 +152,7 @@ export const useExtensionPage = () => {
     message: "",
   });
 
-  // AstrBot 版本范围不兼容警告对话框
+  // BulinBot 版本范围不兼容警告对话框
   const versionCompatibilityDialog = reactive({
     show: false,
     message: "",
@@ -1232,9 +1232,9 @@ export const useExtensionPage = () => {
     pluginMarketData.value.forEach((plugin) => {
       if (plugin.name) {
         let name = plugin.name.trim().toLowerCase();
-        if (name.startsWith("astrbot_plugin_")) {
+        if (name.startsWith("bulinbot_plugin_")) {
           plugin.trimmedName = name.substring(15);
-        } else if (name.startsWith("astrbot_") || name.startsWith("astrbot-")) {
+        } else if (name.startsWith("bulinbot_") || name.startsWith("bulinbot-")) {
           plugin.trimmedName = name.substring(8);
         } else plugin.trimmedName = plugin.name;
       }
@@ -1274,8 +1274,8 @@ export const useExtensionPage = () => {
         ) {
           plugin.support_platforms = matchedInstalled.support_platforms;
         }
-        if (!plugin.astrbot_version && matchedInstalled.astrbot_version) {
-          plugin.astrbot_version = matchedInstalled.astrbot_version;
+        if (!plugin.bulinbot_version && matchedInstalled.bulinbot_version) {
+          plugin.bulinbot_version = matchedInstalled.bulinbot_version;
         }
       }
 
@@ -1296,7 +1296,7 @@ export const useExtensionPage = () => {
     pluginMarketData.value = notInstalled.concat(installed);
   };
 
-  const normalizeAstrBotVersionSpec = (value) => String(value || "").trim();
+  const normalizeBulinBotVersionSpec = (value) => String(value || "").trim();
 
   const normalizeVersionParts = (value) => {
     const version = String(value || "")
@@ -1361,8 +1361,8 @@ export const useExtensionPage = () => {
     return comparison === 0;
   };
 
-  const checkAstrBotVersionCompatibility = (versionSpec, currentVersion) => {
-    const normalizedSpec = normalizeAstrBotVersionSpec(versionSpec);
+  const checkBulinBotVersionCompatibility = (versionSpec, currentVersion) => {
+    const normalizedSpec = normalizeBulinBotVersionSpec(versionSpec);
     if (!normalizedSpec) {
       return { checked: false, compatible: true, message: "" };
     }
@@ -1385,14 +1385,14 @@ export const useExtensionPage = () => {
           checked: true,
           compatible: false,
           message:
-            "Invalid astrbot_version. Use a PEP 440 range, e.g. >=4.16,<5.",
+            "Invalid bulinbot_version. Use a PEP 440 range, e.g. >=4.16,<5.",
         };
       }
       if (!compatible) {
         return {
           checked: true,
           compatible: false,
-          message: `AstrBot ${currentVersion} does not satisfy plugin astrbot_version: ${normalizedSpec}`,
+          message: `BulinBot ${currentVersion} does not satisfy plugin bulinbot_version: ${normalizedSpec}`,
         };
       }
     }
@@ -1402,16 +1402,16 @@ export const useExtensionPage = () => {
 
   const annotateMarketCompatibility = async () => {
     const currentVersion =
-      commonStore.astrbotVersion ||
-      (await commonStore.fetchAstrBotVersion().catch(() => ""));
+      commonStore.bulinbotVersion ||
+      (await commonStore.fetchBulinBotVersion().catch(() => ""));
     pluginMarketData.value.forEach((plugin) => {
-      const result = checkAstrBotVersionCompatibility(
-        plugin?.astrbot_version,
+      const result = checkBulinBotVersionCompatibility(
+        plugin?.bulinbot_version,
         currentVersion,
       );
-      plugin.astrbot_compat_checked = result.checked;
-      plugin.astrbot_compatible = result.compatible;
-      plugin.astrbot_compat_message = result.message;
+      plugin.bulinbot_compat_checked = result.checked;
+      plugin.bulinbot_compatible = result.compatible;
+      plugin.bulinbot_compat_message = result.message;
     });
   };
 
@@ -1443,7 +1443,7 @@ export const useExtensionPage = () => {
   const handleInstallResponse = async (resData) => {
     if (
       resData.status === "warning" &&
-      resData.data?.warning_type === "astrbot_version_incompatible"
+      resData.data?.warning_type === "bulinbot_version_incompatible"
     ) {
       toast(resData.message, "warning");
       showVersionCompatibilityWarning(resData.message);
@@ -1588,15 +1588,15 @@ export const useExtensionPage = () => {
     installCompat.message = "";
 
     const plugin = selectedInstallPlugin.value;
-    if (!plugin?.astrbot_version || uploadTab.value !== "url") {
+    if (!plugin?.bulinbot_version || uploadTab.value !== "url") {
       return;
     }
 
     const currentVersion =
-      commonStore.astrbotVersion ||
-      (await commonStore.fetchAstrBotVersion().catch(() => ""));
-    const result = checkAstrBotVersionCompatibility(
-      plugin.astrbot_version,
+      commonStore.bulinbotVersion ||
+      (await commonStore.fetchBulinBotVersion().catch(() => ""));
+    const result = checkBulinBotVersionCompatibility(
+      plugin.bulinbot_version,
       currentVersion,
     );
     installCompat.checked = result.checked;
@@ -1678,11 +1678,11 @@ export const useExtensionPage = () => {
   };
 
   // 监听语言切换事件
-  window.addEventListener("astrbot-locale-changed", handleLocaleChange);
+  window.addEventListener("bulinbot-locale-changed", handleLocaleChange);
 
   // 清理事件监听器
   onUnmounted(() => {
-    window.removeEventListener("astrbot-locale-changed", handleLocaleChange);
+    window.removeEventListener("bulinbot-locale-changed", handleLocaleChange);
   });
 
   // 搜索防抖处理

@@ -5,10 +5,10 @@ import pytest
 from sqlalchemy.exc import OperationalError
 from sqlmodel import select
 
-from astrbot.core.agent.response import AgentStats
-from astrbot.core.db.po import ProviderStat
-from astrbot.core.pipeline.process_stage.method.agent_sub_stages import internal
-from astrbot.core.provider.entities import ProviderRequest, TokenUsage
+from bulinbot.core.agent.response import AgentStats
+from bulinbot.core.db.po import ProviderStat
+from bulinbot.core.pipeline.process_stage.method.agent_sub_stages import internal
+from bulinbot.core.provider.entities import ProviderRequest, TokenUsage
 
 
 @pytest.mark.asyncio

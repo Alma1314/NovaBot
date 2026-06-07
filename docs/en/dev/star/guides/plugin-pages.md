@@ -1,9 +1,9 @@
 # Plugin Pages
 
-AstrBot lets a plugin expose Dashboard pages by placing static assets under `pages/`. Each direct child directory is one Page:
+BulinBot lets a plugin expose Dashboard pages by placing static assets under `pages/`. Each direct child directory is one Page:
 
 ```text
-astrbot_plugin_page_demo/
+bulinbot_plugin_page_demo/
 ├─ main.py
 └─ pages/
    ├─ bridge-demo/
@@ -16,11 +16,11 @@ astrbot_plugin_page_demo/
       └─ index.html
 ```
 
-AstrBot scans `pages/<page_name>/index.html`; directories without `index.html` are ignored.
+BulinBot scans `pages/<page_name>/index.html`; directories without `index.html` are ignored.
 
 If you only need a few editable settings, prefer [`_conf_schema.json`](./plugin-config.md). Plugin Pages are more suitable for complex forms, dashboards, logs, file transfer, SSE, and custom interaction flows.
 
-Once Pages are registered, users can open the AstrBot WebUI Plugins page, click the plugin card to enter the plugin detail page, and then view and open the registered Pages from that detail page.
+Once Pages are registered, users can open the BulinBot WebUI Plugins page, click the plugin card to enter the plugin detail page, and then view and open the registered Pages from that detail page.
 
 ## Minimal Frontend Example
 
@@ -45,7 +45,7 @@ Once Pages are registered, users can open the AstrBot WebUI Plugins page, click 
 `pages/bridge-demo/app.js`
 
 ```js
-const bridge = window.AstrBotPluginPage;
+const bridge = window.BulinBotPluginPage;
 const output = document.getElementById("output");
 
 const context = await bridge.ready();
@@ -57,7 +57,7 @@ document.getElementById("ping").addEventListener("click", async () => {
 });
 ```
 
-You do not need to import the bridge SDK manually. AstrBot injects `/api/plugin/page/bridge-sdk.js` into returned HTML.
+You do not need to import the bridge SDK manually. BulinBot injects `/api/plugin/page/bridge-sdk.js` into returned HTML.
 
 ## Register Backend APIs
 
@@ -71,9 +71,9 @@ The registered Web API route must include the plugin name as a prefix:
 
 ```python
 from quart import jsonify
-from astrbot.api.star import Context, Star
+from bulinbot.api.star import Context, Star
 
-PLUGIN_NAME = "astrbot_plugin_page_demo"
+PLUGIN_NAME = "bulinbot_plugin_page_demo"
 
 
 class MyPlugin(Star):
@@ -92,7 +92,7 @@ class MyPlugin(Star):
 
 ## Bridge API
 
-Inside a plugin Page, use `window.AstrBotPluginPage` directly:
+Inside a plugin Page, use `window.BulinBotPluginPage` directly:
 
 - `ready()`: Wait until the bridge is ready and return the context
 - `getContext()`: Read the current context
@@ -111,7 +111,7 @@ The current `ready()` context looks like this:
 
 ```json
 {
-  "pluginName": "astrbot_plugin_page_demo",
+  "pluginName": "bulinbot_plugin_page_demo",
   "displayName": "Plugin Page Demo",
   "pageName": "bridge-demo",
   "pageTitle": "Bridge Demo",
@@ -125,7 +125,7 @@ The current `ready()` context looks like this:
 
 ## Page Internationalization
 
-Plugin Pages reuse plugin i18n resource files. Add `pages.<page_name>` to `.astrbot-plugin/i18n/<locale>.json`:
+Plugin Pages reuse plugin i18n resource files. Add `pages.<page_name>` to `.bulinbot-plugin/i18n/<locale>.json`:
 
 ```json
 {
@@ -145,7 +145,7 @@ Plugin Pages reuse plugin i18n resource files. Add `pages.<page_name>` to `.astr
 Inside the Page, render text with `t()` and react to language changes with `onContext()`:
 
 ```js
-const bridge = window.AstrBotPluginPage;
+const bridge = window.BulinBotPluginPage;
 
 function render() {
   document.title = bridge.t("pages.bridge-demo.title", "Bridge Demo");
@@ -163,7 +163,7 @@ bridge.onContext(render);
 
 After the WebUI locale changes, the Dashboard sends the new `locale` and plugin i18n resources to the iframe through the bridge. If the Page listens with `onContext()`, it usually does not need a refresh.
 
-If an inline script needs to access `window.AstrBotPluginPage` synchronously, move the code to an external module file or explicitly include the bridge SDK before your script:
+If an inline script needs to access `window.BulinBotPluginPage` synchronously, move the code to an external module file or explicitly include the bridge SDK before your script:
 
 ```html
 <script src="/api/plugin/page/bridge-sdk.js"></script>
@@ -171,7 +171,7 @@ If an inline script needs to access `window.AstrBotPluginPage` synchronously, mo
 
 ## Light/Dark Theme Adaptation
 
-When the user toggles light/dark mode in AstrBot, the theme state is automatically synced to Plugin Pages. The bridge SDK maintains a `data-theme` attribute on the `<html>` element:
+When the user toggles light/dark mode in BulinBot, the theme state is automatically synced to Plugin Pages. The bridge SDK maintains a `data-theme` attribute on the `<html>` element:
 
 - Light mode: `<html data-theme="light">`
 - Dark mode: `<html data-theme="dark">`
@@ -197,14 +197,14 @@ body {
 }
 ```
 
-AstrBot injects the `data-theme` attribute on the `<html>` tag server-side when serving HTML, so there is no initial flash.
+BulinBot injects the `data-theme` attribute on the `<html>` tag server-side when serving HTML, so there is no initial flash.
 
 ### Responding to Theme Changes in JavaScript
 
 The `isDark` field in the context indicates whether dark mode is active. Use `onContext()` to listen for theme changes:
 
 ```js
-const bridge = window.AstrBotPluginPage;
+const bridge = window.BulinBotPluginPage;
 
 function render() {
   if (bridge.getContext()?.isDark) {
@@ -221,9 +221,9 @@ When the theme is toggled, the Dashboard sends the updated context to the iframe
 
 ## Asset Path Rules
 
-AstrBot rewrites relative asset URLs and appends a short-lived `asset_token`. Write normal relative paths and do not hardcode `/api/plugin/page/content/...` yourself.
+BulinBot rewrites relative asset URLs and appends a short-lived `asset_token`. Write normal relative paths and do not hardcode `/api/plugin/page/content/...` yourself.
 
-AstrBot rewrites:
+BulinBot rewrites:
 
 - HTML `src` and `href`
 - CSS `url(...)`
@@ -245,7 +245,7 @@ allow-scripts allow-forms allow-downloads
 
 The page cannot directly access Dashboard cookies, LocalStorage, or same-origin DOM, and it cannot bypass the bridge to reuse Dashboard auth directly.
 
-AstrBot also adds security headers to asset responses, including:
+BulinBot also adds security headers to asset responses, including:
 
 - `X-Frame-Options: SAMEORIGIN`
 - `Content-Security-Policy: frame-ancestors 'self'; object-src 'none'; base-uri 'self'`
@@ -262,7 +262,7 @@ AstrBot also adds security headers to asset responses, including:
 Start page scripts by keeping a bridge reference:
 
 ```js
-const bridge = window.AstrBotPluginPage;
+const bridge = window.BulinBotPluginPage;
 ```
 
 ### `ready()`
@@ -278,7 +278,7 @@ The context usually contains:
 
 ```json
 {
-  "pluginName": "astrbot_plugin_page_demo",
+  "pluginName": "bulinbot_plugin_page_demo",
   "displayName": "Plugin Page Demo",
   "pageName": "bridge-demo",
   "pageTitle": "Bridge Demo",

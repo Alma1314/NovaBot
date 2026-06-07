@@ -4,20 +4,20 @@
 
 ### 当管理面板打开时遇到 404 错误
 
-在 [release](https://github.com/AstrBotDevs/AstrBot/releases) 页面下载 `AstrBot-vxxxxx-dashboard.zip`，解压拖到 `AstrBot/data` 下。还不行请重启电脑（来自群里的反馈）
+在 [release](https://github.com/BulinBotDevs/BulinBot/releases) 页面下载 `BulinBot-vxxxxx-dashboard.zip`，解压拖到 `BulinBot/data` 下。还不行请重启电脑（来自群里的反馈）
 
 
 ### 首次登录的默认账号和随机密码
 
-首次启动时，WebUI 的默认账号为 `astrbot`，默认密码会随机生成，不会写死为固定值。请在启动日志中查找以下内容并使用日志中的随机初始密码登录：
+首次启动时，WebUI 的默认账号为 `bulinbot`，默认密码会随机生成，不会写死为固定值。请在启动日志中查找以下内容并使用日志中的随机初始密码登录：
 
 ```text
 [00:27:40.590] [Core] [INFO] [dashboard.server:523]:
  ✨✨✨
-  AstrBot v4.24.3 WebUI is ready
+  BulinBot v4.24.3 WebUI is ready
 
    ➜  Local: http://localhost:6185
-   ➜  Initial username: astrbot
+   ➜  Initial username: bulinbot
    ➜  Initial password: UiYVpZxnW8k22IWqf0ru5pOy
    ➜  Change it after logging in
  ✨✨✨
@@ -28,12 +28,12 @@ Set dashboard.host in data/cmd_config.json to enable remote access.
 
 ### 管理面板的密码忘记了
 
-如果你忘记了 AstrBot 管理面板的密码，你可以在 `AstrBot/data/cmd_config.json` 配置文件中找到 `"dashboard"` 字段，如下：
+如果你忘记了 BulinBot 管理面板的密码，你可以在 `BulinBot/data/cmd_config.json` 配置文件中找到 `"dashboard"` 字段，如下：
 
 ```json
   "dashboard": {
     "enable": true,
-    "username": "astrbot",
+    "username": "bulinbot",
     "password": "81e0c3dxxxxxxxxxxx78862e78",
     "pbkdf2_password": "pbkdf2_sha256$600000$1xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
     "password_storage_upgraded": true,
@@ -69,48 +69,48 @@ Set dashboard.host in data/cmd_config.json to enable remote access.
   },
 ```
 
-重启后 AstrBot 将会自动生成随机的密码以及固定的用户名 `astrbot`，请在日志查看。
+重启后 BulinBot 将会自动生成随机的密码以及固定的用户名 `bulinbot`，请在日志查看。
 
-### 升级 AstrBot 后密码正确但无法登录
+### 升级 BulinBot 后密码正确但无法登录
 
-如果你确认管理面板密码正确，但升级 AstrBot 后仍然无法登录，可能是旧版 WebUI 静态文件缓存与新版后端不兼容。
+如果你确认管理面板密码正确，但升级 BulinBot 后仍然无法登录，可能是旧版 WebUI 静态文件缓存与新版后端不兼容。
 
 解决方案：
 
-1. 停止 AstrBot。
-2. 删除 AstrBot 的 `data` 目录下的 `dist` 文件夹，即 `AstrBot/data/dist`。
-3. 重新启动 AstrBot。
+1. 停止 BulinBot。
+2. 删除 BulinBot 的 `data` 目录下的 `dist` 文件夹，即 `BulinBot/data/dist`。
+3. 重新启动 BulinBot。
 4. 访问管理面板后按 `Ctrl+Shift+R` 或 `Ctrl+F5`（macOS 用户请按 `Cmd+Shift+R`）强制刷新页面。
 
-重启后，AstrBot 会重新加载或下载匹配当前版本的 WebUI 文件。
+重启后，BulinBot 会重新加载或下载匹配当前版本的 WebUI 文件。
 
-## AstrBot 使用相关
+## BulinBot 使用相关
 
-### 如何让 AstrBot 控制我的 Mac / Windows / Linux 电脑？
+### 如何让 BulinBot 控制我的 Mac / Windows / Linux 电脑？
 
-1. 在 AstrBot WebUI 的 `配置 -> 普通配置` 中，找到 `使用电脑能力`，运行环境选择 `local`。
+1. 在 BulinBot WebUI 的 `配置 -> 普通配置` 中，找到 `使用电脑能力`，运行环境选择 `local`。
 2. 在 `配置 -> 其他配置` 中，找到 `管理员 ID 列表`，添加你的用户 ID（可以通过 `/sid` 指令获取）。
 3. 右下角保存配置
 
 > [!TIP]
-> AstrBot 为了安全起见，运行环境选择 `local` 时，默认仅允许 AstrBot 管理员使用电脑能力。
-> 运行环境可以选择 `sandbox`，此时所有用户都可以使用电脑能力（在一个隔离的沙箱中）。详情请看 [AstrBot 沙箱环境](/use/astrbot-agent-sandbox.md)
+> BulinBot 为了安全起见，运行环境选择 `local` 时，默认仅允许 BulinBot 管理员使用电脑能力。
+> 运行环境可以选择 `sandbox`，此时所有用户都可以使用电脑能力（在一个隔离的沙箱中）。详情请看 [BulinBot 沙箱环境](/use/bulinbot-agent-sandbox.md)
 
-### 通过 AstrBot 桌面客户端安装的 AstrBot，data 目录在哪？
+### 通过 BulinBot 桌面客户端安装的 BulinBot，data 目录在哪？
 
-在家目录下的 `.astrbot` 目录下。
+在家目录下的 `.bulinbot` 目录下。
 
-- Windows: `C:\Users\你的用户名\.astrbot`
-- MacOS / Linux: `/Users/你的用户名/.astrbot` 或者 `/home/你的用户名/.astrbot`
+- Windows: `C:\Users\你的用户名\.bulinbot`
+- MacOS / Linux: `/Users/你的用户名/.bulinbot` 或者 `/home/你的用户名/.bulinbot`
 
-### 通过 AstrBot Launcher 安装的 AstrBot，data 目录在哪？
+### 通过 BulinBot Launcher 安装的 BulinBot，data 目录在哪？
 
-如果是旧版本的 AstrBot Launcher（Powershell），data 目录就在 Launcher bat 脚本的同级目录下。
+如果是旧版本的 BulinBot Launcher（Powershell），data 目录就在 Launcher bat 脚本的同级目录下。
 
-如果是新版本的 AstrBot Launcher（可视化），data 目录在家目录下的 `.astrbot_launcher` 目录下。
+如果是新版本的 BulinBot Launcher（可视化），data 目录在家目录下的 `.bulinbot_launcher` 目录下。
 
-- Windows: `C:\Users\你的用户名\.astrbot_launcher`
-- MacOS / Linux: `/Users/你的用户名/.astrbot_launcher` 或者 `/home/你的用户名/.astrbot_launcher`
+- Windows: `C:\Users\你的用户名\.bulinbot_launcher`
+- MacOS / Linux: `/Users/你的用户名/.bulinbot_launcher` 或者 `/home/你的用户名/.bulinbot_launcher`
 
 ### 机器人在群聊无法聊天
 
@@ -122,7 +122,7 @@ Set dashboard.host in data/cmd_config.json to enable remote access.
 
 ### 本地渲染 Markdown 图片（t2i）时中文乱码
 
-可以自定义字体。详见 -> [#957](https://github.com/AstrBotDevs/AstrBot/issues/957#issuecomment-2749981802)
+可以自定义字体。详见 -> [#957](https://github.com/BulinBotDevs/BulinBot/issues/957#issuecomment-2749981802)
 
 推荐 [Maple Mono](https://github.com/subframe7536/maple-font) 字体。
 
@@ -145,9 +145,9 @@ Set dashboard.host in data/cmd_config.json to enable remote access.
 
 ### 安装插件后报错 `No module named 'xxx'`
 
-![image](https://files.astrbot.app/docs/source/images/faq/image.png)
+![image](https://files.bulinbot.app/docs/source/images/faq/image.png)
 
-这个是因为插件依赖的库没有被正常安装。一般情况下，AstrBot 会在安装好插件后自动为插件安装依赖库，如果出现了以下情况可能造成安装失败：
+这个是因为插件依赖的库没有被正常安装。一般情况下，BulinBot 会在安装好插件后自动为插件安装依赖库，如果出现了以下情况可能造成安装失败：
 
 1. 网络问题导致依赖库无法下载
 2. 插件作者没有填写 `requirements.txt` 文件
@@ -155,28 +155,28 @@ Set dashboard.host in data/cmd_config.json to enable remote access.
 
 解决方法：
 
-结合报错信息，参考插件的 README 手动安装依赖库。你可以在 AstrBot WebUI 的 `平台日志` -> `安装 Pip 库` 中安装依赖库。
+结合报错信息，参考插件的 README 手动安装依赖库。你可以在 BulinBot WebUI 的 `平台日志` -> `安装 Pip 库` 中安装依赖库。
 
-![image](https://files.astrbot.app/docs/source/images/faq/image-1.png)
+![image](https://files.bulinbot.app/docs/source/images/faq/image-1.png)
 
 如果发现插件作者没有填写 `requirements.txt` 文件，请在插件仓库提交 Issue，提醒作者补充。
 
 
 ## OneBot v11 实现端 NapCat 连接相关
 
-### 我明明按照文档的步骤做了，为什么 NapCat 连不上 Astrbot？
+### 我明明按照文档的步骤做了，为什么 NapCat 连不上 BulinBot？
 
 1. 如果你两个**全都**是使用 Docker 部署，请尝试在终端运行：
 
 ```bash
 sudo docker network create newnet           # 创建新网络 
-sudo docker network connect newnet astrbot  
+sudo docker network connect newnet bulinbot  
 sudo docker network connect newnet napcat   # 让两个容器连到一起
-sudo docker restart astrbot
+sudo docker restart bulinbot
 sudo docker restart napcat                  # 重启容器
 ```
 
-运行无报错则回到 NapCat 的 WebUI，网络配置中，将你之前填写的 `ws://127.0.0.1:6199/ws` 修改为 `ws://astrbot:6199/ws`。
+运行无报错则回到 NapCat 的 WebUI，网络配置中，将你之前填写的 `ws://127.0.0.1:6199/ws` 修改为 `ws://bulinbot:6199/ws`。
 
 2. 如果只有 NapCat 是 Docker 部署，请将 NapCat 的 WebUI 网络配置中的 `ws://127.0.0.1:6199/ws` 修改为 `ws://宿主机IP:6199/ws`（宿主机 IP 请自行搜索如何查看）。
 3. 如果都不是 Docker 部署，则请将 NapCat 的 WebUI 网络配置中的 `ws://127.0.0.1:6199/ws` 修改为 `ws://localhost:6199/ws` 或 `ws://127.0.0.1:6199/ws`。

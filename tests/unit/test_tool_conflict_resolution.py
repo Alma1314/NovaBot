@@ -6,8 +6,8 @@ with a disabled built-in tool, the MCP tool should not be removed as collateral 
 
 import pytest
 
-from astrbot.core.agent.tool import FunctionTool, ToolSet
-from astrbot.core.provider.func_tool_manager import FunctionToolManager
+from bulinbot.core.agent.tool import FunctionTool, ToolSet
+from bulinbot.core.provider.func_tool_manager import FunctionToolManager
 
 
 def make_tool(name: str, active: bool = True) -> FunctionTool:

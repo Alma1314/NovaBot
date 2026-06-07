@@ -30,7 +30,7 @@
     },
     "cpu": {
       "label": "CPU",
-      "note": "Использование CPU AstrBot"
+      "note": "Использование CPU BulinBot"
     },
     "memory": {
       "label": "Память процесса",

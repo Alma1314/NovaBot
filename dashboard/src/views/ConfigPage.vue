@@ -24,7 +24,7 @@
             variant="outlined"
             style="min-width: 280px;"
           />
-          <!-- <a style="color: inherit;" href="https://blog.astrbot.app/posts/what-is-changed-in-4.0.0/#%E5%A4%9A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6" target="_blank"><v-btn icon="mdi-help-circle" size="small" variant="plain"></v-btn></a> -->
+          <!-- <a style="color: inherit;" href="https://blog.bulinbot.app/posts/what-is-changed-in-4.0.0/#%E5%A4%9A%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6" target="_blank"><v-btn icon="mdi-help-circle" size="small" variant="plain"></v-btn></a> -->
 
         </div>
       </div>
@@ -44,7 +44,7 @@
       <v-slide-y-transition mode="out-in">
         <div v-if="(selectedConfigID || isSystemConfig) && fetched" :key="configContentKey" class="config-content" style="width: 100%;">
           <!-- 可视化编辑 -->
-          <AstrBotCoreConfigWrapper
+          <BulinBotCoreConfigWrapper
             :metadata="metadata"
             :config_data="config_data"
             :search-keyword="configSearchKeyword"
@@ -217,12 +217,12 @@
 
 <script>
 import axios from 'axios';
-import AstrBotCoreConfigWrapper from '@/components/config/AstrBotCoreConfigWrapper.vue';
+import BulinBotCoreConfigWrapper from '@/components/config/BulinBotCoreConfigWrapper.vue';
 import WaitingForRestart from '@/components/shared/WaitingForRestart.vue';
 import StandaloneChat from '@/components/chat/StandaloneChat.vue';
 import { VueMonacoEditor } from '@guolao/vue-monaco-editor'
 import { useI18n, useModuleI18n } from '@/i18n/composables';
-import { restartAstrBot as restartAstrBotRuntime } from '@/utils/restartAstrBot';
+import { restartBulinBot as restartBulinBotRuntime } from '@/utils/restartBulinBot';
 import {
   askForConfirmation as askForConfirmationDialog,
   useConfirmDialog
@@ -234,7 +234,7 @@ import { normalizeTextInput } from '@/utils/inputValue';
 export default {
   name: 'ConfigPage',
   components: {
-    AstrBotCoreConfigWrapper,
+    BulinBotCoreConfigWrapper,
     VueMonacoEditor,
     WaitingForRestart,
     StandaloneChat,
@@ -434,7 +434,7 @@ export default {
     this.configType = this.isSystemConfig ? 'system' : 'normal';
     
     // 监听语言切换事件，重新加载配置以获取插件的 i18n 数据
-    window.addEventListener('astrbot-locale-changed', this.handleLocaleChange);
+    window.addEventListener('bulinbot-locale-changed', this.handleLocaleChange);
 
     // 保存初始配置
     this.$watch('config_data', (newVal) => {
@@ -446,7 +446,7 @@ export default {
 
   beforeUnmount() {
     // 移除语言切换事件监听器
-    window.removeEventListener('astrbot-locale-changed', this.handleLocaleChange);
+    window.removeEventListener('bulinbot-locale-changed', this.handleLocaleChange);
   },
   methods: {
     // 处理语言切换事件，重新加载配置以获取插件的 i18n 数据
@@ -558,11 +558,11 @@ export default {
         postData.conf_id = this.selectedConfigID;
       }
 
-      return this.saveAstrbotConfig(postData);
+      return this.saveBulinbotConfig(postData);
     },
-    async saveAstrbotConfig(postData, headers = {}, allow2faPrompt = true) {
+    async saveBulinbotConfig(postData, headers = {}, allow2faPrompt = true) {
       try {
-        const res = await axios.post('/api/config/astrbot/update', postData, {
+        const res = await axios.post('/api/config/bulinbot/update', postData, {
           headers,
           validateStatus: (status) => (status >= 200 && status < 300) || status === 401,
         });
@@ -591,7 +591,7 @@ export default {
           this.onConfigSaved();
 
           if (this.isSystemConfig) {
-            restartAstrBotRuntime(this.$refs.wfr).catch(() => {})
+            restartBulinBotRuntime(this.$refs.wfr).catch(() => {})
           }
           return { success: true };
         }
@@ -617,7 +617,7 @@ export default {
         'X-2FA-Code': payload,
       };
       try {
-        await this.saveAstrbotConfig(
+        await this.saveBulinbotConfig(
           JSON.parse(JSON.stringify(this.configSavePendingPostData)),
           headers,
           false,

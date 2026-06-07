@@ -126,7 +126,7 @@
         @compositioncancel="handleCompositionEnd"
         @blur="handleBlur"
         :disabled="disabled"
-        placeholder="Ask AstrBot..."
+        placeholder="Ask BulinBot..."
         class="chat-textarea"
         autocomplete="off"
         autocorrect="off"
@@ -695,7 +695,7 @@ function handleKeyDown(e: KeyboardEvent) {
 
   if (isSendHotkey) {
     e.preventDefault();
-    if (localPrompt.value.trim() === "/astr_live_dev") {
+    if (localPrompt.value.trim() === "/bulin_live_dev") {
       emit("openLiveMode");
       localPrompt.value = "";
       return;

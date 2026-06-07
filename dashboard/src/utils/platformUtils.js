@@ -52,26 +52,26 @@ export function getPlatformIcon(name) {
  */
 export function getTutorialLink(platformType) {
   const tutorialMap = {
-    "qq_official_webhook": "https://docs.astrbot.app/platform/qqofficial/webhook.html",
-    "qq_official": "https://docs.astrbot.app/platform/qqofficial/websockets.html",
-    "aiocqhttp": "https://docs.astrbot.app/platform/aiocqhttp.html",
-    "wecom": "https://docs.astrbot.app/platform/wecom.html",
-    "weixin_oc": "https://docs.astrbot.app/platform/weixin_oc.html",
-    "wecom_ai_bot": "https://docs.astrbot.app/platform/wecom_ai_bot.html",
-    "lark": "https://docs.astrbot.app/platform/lark.html",
-    "telegram": "https://docs.astrbot.app/platform/telegram.html",
-    "dingtalk": "https://docs.astrbot.app/platform/dingtalk.html",
-    "weixin_official_account": "https://docs.astrbot.app/platform/weixin-official-account.html",
-    "discord": "https://docs.astrbot.app/platform/discord.html",
-    "slack": "https://docs.astrbot.app/platform/slack.html",
-    "kook": "https://docs.astrbot.app/platform/kook.html",
-    "vocechat": "https://docs.astrbot.app/platform/vocechat.html",
-    "satori": "https://docs.astrbot.app/platform/satori/llonebot.html",
-    "misskey": "https://docs.astrbot.app/platform/misskey.html",
-    "line": "https://docs.astrbot.app/platform/line.html",
-    "matrix": "https://docs.astrbot.app/platform/matrix.html",
+    "qq_official_webhook": "https://docs.bulinbot.app/platform/qqofficial/webhook.html",
+    "qq_official": "https://docs.bulinbot.app/platform/qqofficial/websockets.html",
+    "aiocqhttp": "https://docs.bulinbot.app/platform/aiocqhttp.html",
+    "wecom": "https://docs.bulinbot.app/platform/wecom.html",
+    "weixin_oc": "https://docs.bulinbot.app/platform/weixin_oc.html",
+    "wecom_ai_bot": "https://docs.bulinbot.app/platform/wecom_ai_bot.html",
+    "lark": "https://docs.bulinbot.app/platform/lark.html",
+    "telegram": "https://docs.bulinbot.app/platform/telegram.html",
+    "dingtalk": "https://docs.bulinbot.app/platform/dingtalk.html",
+    "weixin_official_account": "https://docs.bulinbot.app/platform/weixin-official-account.html",
+    "discord": "https://docs.bulinbot.app/platform/discord.html",
+    "slack": "https://docs.bulinbot.app/platform/slack.html",
+    "kook": "https://docs.bulinbot.app/platform/kook.html",
+    "vocechat": "https://docs.bulinbot.app/platform/vocechat.html",
+    "satori": "https://docs.bulinbot.app/platform/satori/llonebot.html",
+    "misskey": "https://docs.bulinbot.app/platform/misskey.html",
+    "line": "https://docs.bulinbot.app/platform/line.html",
+    "matrix": "https://docs.bulinbot.app/platform/matrix.html",
   }
-  return tutorialMap[platformType] || "https://docs.astrbot.app";
+  return tutorialMap[platformType] || "https://docs.bulinbot.app";
 }
 
 /**

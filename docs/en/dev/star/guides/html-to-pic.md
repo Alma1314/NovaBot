@@ -2,28 +2,28 @@
 # Text to Image
 
 > [!TIP]
-> For easier development, you can use the [AstrBot Text2Image Playground](https://t2i-playground.astrbot.app/) for online visual editing and testing of HTML templates.
+> For easier development, you can use the [BulinBot Text2Image Playground](https://t2i-playground.bulinbot.app/) for online visual editing and testing of HTML templates.
 
 ## Basic Usage
 
-AstrBot supports rendering text into images.
+BulinBot supports rendering text into images.
 
 ```python
 @filter.command("image") # Register an /image command that accepts a text parameter.
-async def on_aiocqhttp(self, event: AstrMessageEvent, text: str):
+async def on_aiocqhttp(self, event: BulinMessageEvent, text: str):
     url = await self.text_to_image(text) # text_to_image() is a method of the Star class.
     # path = await self.text_to_image(text, return_url = False) # If you want to save the image locally
     yield event.image_result(url)
 
 ```
 
-![image](https://files.astrbot.app/docs/source/images/plugin/image-3.png)
+![image](https://files.bulinbot.app/docs/source/images/plugin/image-3.png)
 
 ## Customization (HTML-Based)
 
 If you find the default rendered images insufficiently aesthetic, you can use custom HTML templates to render images.
 
-AstrBot supports rendering text-to-image templates using `HTML + Jinja2`.
+BulinBot supports rendering text-to-image templates using `HTML + Jinja2`.
 
 ```py{7}
 # Custom Jinja2 template with CSS support
@@ -39,7 +39,7 @@ TMPL = '''
 '''
 
 @filter.command("todo")
-async def custom_t2i_tmpl(self, event: AstrMessageEvent):
+async def custom_t2i_tmpl(self, event: BulinMessageEvent):
     options = {} # Optionally pass rendering options.
     url = await self.html_render(TMPL, {"items": ["Eat", "Sleep", "Play Genshin"]}, options=options) # The second parameter is the data for Jinja2 rendering
     yield event.image_result(url)
@@ -47,7 +47,7 @@ async def custom_t2i_tmpl(self, event: AstrMessageEvent):
 
 The result:
 
-![image](https://files.astrbot.app/docs/source/images/plugin/fcc2dcb472a91b12899f617477adc5c7.png)
+![image](https://files.bulinbot.app/docs/source/images/plugin/fcc2dcb472a91b12899f617477adc5c7.png)
 
 This is just a simple example. Thanks to the powerful capabilities of HTML and DOM renderers, you can create more complex and visually appealing designs. Additionally, Jinja2 supports syntax for loops, conditionals, and more to accommodate data structures like lists and dictionaries. You can learn more about Jinja2 online.
 

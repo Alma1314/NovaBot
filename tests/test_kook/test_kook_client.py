@@ -7,16 +7,16 @@ from unittest.mock import AsyncMock
 
 import pytest
 
-from astrbot.core.message.components import (
+from bulinbot.core.message.components import (
     At,
     AtAll,
     BaseMessageComponent,
     Plain,
     Record,
 )
-from astrbot.core.platform.sources.kook.kook_client import KookClient
-from astrbot.core.platform.sources.kook.kook_config import KookConfig
-from astrbot.core.platform.sources.kook.kook_types import (
+from bulinbot.core.platform.sources.kook.kook_client import KookClient
+from bulinbot.core.platform.sources.kook.kook_config import KookConfig
+from bulinbot.core.platform.sources.kook.kook_types import (
     KookMessageEventData,
     KookWebsocketEvent,
 )
@@ -123,14 +123,14 @@ async def test_kook_event_warp_message(
 ):
     monkeypatch = pytest.MonkeyPatch()
     monkeypatch.setattr(
-        "astrbot.core.platform.sources.kook.kook_adapter.KookClient", mock_kook_client
+        "bulinbot.core.platform.sources.kook.kook_adapter.KookClient", mock_kook_client
     )
     monkeypatch.setattr(
-        "astrbot.core.platform.sources.kook.kook_adapter.KookRolesRecord",
+        "bulinbot.core.platform.sources.kook.kook_adapter.KookRolesRecord",
         mock_kook_roles_record,
     )
 
-    from astrbot.core.platform.sources.kook.kook_adapter import KookPlatformAdapter
+    from bulinbot.core.platform.sources.kook.kook_adapter import KookPlatformAdapter
 
     adapter = KookPlatformAdapter({}, {}, asyncio.Queue())
 
@@ -141,16 +141,16 @@ async def test_kook_event_warp_message(
     )
     assert isinstance(event.data, KookMessageEventData)
 
-    astrbotMessage = await adapter.convert_message(event.data)
-    assert astrbotMessage.self_id == TEST_BOT_ID
-    assert astrbotMessage.sender.user_id == raw_event["d"]["author_id"]
+    bulinbotMessage = await adapter.convert_message(event.data)
+    assert bulinbotMessage.self_id == TEST_BOT_ID
+    assert bulinbotMessage.sender.user_id == raw_event["d"]["author_id"]
     assert (
-        astrbotMessage.sender.nickname == raw_event["d"]["extra"]["author"]["username"]
+        bulinbotMessage.sender.nickname == raw_event["d"]["extra"]["author"]["username"]
     )
-    assert astrbotMessage.raw_message == raw_event["d"]
-    assert astrbotMessage.message_id == raw_event["d"]["msg_id"]
-    assert astrbotMessage.message == expected_message_components
+    assert bulinbotMessage.raw_message == raw_event["d"]
+    assert bulinbotMessage.message_id == raw_event["d"]["msg_id"]
+    assert bulinbotMessage.message == expected_message_components
     if isinstance(expected_message_str, str):
-        assert astrbotMessage.message_str == expected_message_str
+        assert bulinbotMessage.message_str == expected_message_str
     else:
         assert get_json_field(raw_event, expected_message_str)
