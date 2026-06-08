@@ -18,9 +18,7 @@ uv sync
 uv run python main.py
 ```
 
-启动后访问 `http://localhost:6185` 进入 WebUI 管理面板。
-
-> 所有配置保存在 `data/cmd_config.json`，首次启动自动生成默认配置。你也可以通过 WebUI 可视化修改配置。
+> 所有配置保存在 `data/cmd_config.json`，首次启动自动生成默认配置。
 
 ---
 
