@@ -106,7 +106,7 @@ If there are no running tasks in the current session, NovaBot will report that n
 
 Other commands that were previously shipped with the core have been moved to a separate plugin:
 
-- [builtin_commands_extension](https://github.com/NovaBotDevs/builtin_commands_extension)
+- [builtin_commands_extension](https://github.com/Alma1314/builtin_commands_extension)
 
 This plugin provides extended commands for plugin management, Provider management, model switching, Persona management, and conversation management. Examples include:
 

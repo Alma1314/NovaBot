@@ -110,7 +110,7 @@ When NovaBot starts, it automatically checks if the admin panel needs updating. 
 
 Use the `/dashboard_update` command to manually update the admin panel (admin command).
 
-Admin panel files are located in the data/dist directory. If you need to manually replace them, download `dist.zip` from https://github.com/NovaBotDevs/NovaBot/releases/ and extract it to the data directory.
+Admin panel files are located in the data/dist directory. If you need to manually replace them, download `dist.zip` from https://github.com/Alma1314/NovaBot/releases/ and extract it to the data directory.
 
 ## Customizing WebUI Port
 

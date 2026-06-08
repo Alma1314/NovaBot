@@ -63,7 +63,7 @@ NovaBot 支持接入企业微信应用和微信客服。
 1. **获取 Secret。** 之后，在 `开发配置` 中得到 Secret，找到复制到刚刚创建的企业微信适配器，点击编辑，然后修改配置中的 `secret`。然后再次保存配置，等待适配器加载完成。
 
 > [!TIP]
-> 根据 [#571](https://github.com/Soulter/NovaBot/issues/571) 的反馈，对于新注册的企业，`corp_id` 可能要注册一段时间后才生效（前后大概过了半个小时）。
+> 根据 [#571](https://github.com/Alma1314/NovaBot/issues/571) 的反馈，对于新注册的企业，`corp_id` 可能要注册一段时间后才生效（前后大概过了半个小时）。
 
 然后，打开 `控制台` 页，你应该会看到如下日志：
 
@@ -82,7 +82,7 @@ NovaBot 支持接入企业微信应用和微信客服。
 点击 `我的企业`，查看并得到企业 ID（`Corpid`），复制到 NovaBot 配置的 `corpid` 处。
 
 > [!TIP]
-> 根据 [#571](https://github.com/Soulter/NovaBot/issues/571) 的反馈，对于新注册的企业，`corp_id` 可能要注册一段时间后才生效（前后大概过了半个小时）。
+> 根据 [#571](https://github.com/Alma1314/NovaBot/issues/571) 的反馈，对于新注册的企业，`corp_id` 可能要注册一段时间后才生效（前后大概过了半个小时）。
 
 ![image](https://files.bulinbot.app/docs/source/images/wecom/image-5.png)
 

@@ -4,10 +4,10 @@ version: '3.8'
 
 services:
   novabot:
-    image: soulter/novabot:latest
+    image: alma1314/novabot:latest
     container_name: novabot
     restart: always
-    ports: # mappings description: https://github.com/NovaBotDevs/NovaBot/issues/497
+    ports: # mappings description: https://github.com/Alma1314/NovaBot/issues/497
       - "6185:6185" # 必选，NovaBot WebUI 端口
       - "6199:6199" # 可选, QQ 个人号 WebSocket 端口
     environment:
@@ -20,7 +20,7 @@ services:
       - novabot_network
 
   shipyard:
-    image: soulter/shipyard-bay:latest
+    image: alma1314/shipyard-bay:latest
     container_name: novabot_shipyard
     # ports:
     #   - "8156:8156"
@@ -30,7 +30,7 @@ services:
       - ACCESS_TOKEN=secret-token
       - MAX_SHIP_NUM=10
       - BEHAVIOR_AFTER_MAX_SHIP=reject
-      - DOCKER_IMAGE=soulter/shipyard-ship:latest
+      - DOCKER_IMAGE=alma1314/shipyard-ship:latest
       - DOCKER_NETWORK=novabot_network
       - SHIP_DATA_DIR=${PWD}/data/shipyard/ship_mnt_data
       - DEFAULT_SHIP_CPUS=1.0

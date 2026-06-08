@@ -6,7 +6,7 @@ Among the various deployment options, the desktop client is best suited for pers
 
 Compared to command-line or container-based solutions, the desktop client offers an out-of-the-box experience, ideal for users who want to get started without dealing with environment setup.
 
-Repository: [NovaBotDevs/NovaBot-desktop](https://github.com/NovaBotDevs/NovaBot-desktop)
+Repository: [Alma1314/NovaBot-desktop](https://github.com/Alma1314/NovaBot-desktop)
 
 ## Who Is It For
 
@@ -22,7 +22,7 @@ Repository: [NovaBotDevs/NovaBot-desktop](https://github.com/NovaBotDevs/NovaBot
 
 ## Download and Install
 
-1. Open [NovaBot-desktop Releases](https://github.com/NovaBotDevs/NovaBot-desktop/releases).
+1. Open [NovaBot-desktop Releases](https://github.com/Alma1314/NovaBot-desktop/releases).
 2. Download the installer for your operating system (e.g. `.exe`, `.dmg`, `.rpm`, `.deb`).
 3. Launch the desktop client after installation and follow the setup wizard to complete initialization.
 

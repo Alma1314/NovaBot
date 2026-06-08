@@ -14,7 +14,7 @@ class ProviderOpenRouter(ProviderOpenAIOfficial):
         super().__init__(provider_config, provider_settings)
         # Reference to: https://openrouter.ai/docs/api/reference/overview#headers
         self.client._custom_headers["HTTP-Referer"] = (  # type: ignore
-            "https://github.com/NovaBotDevs/NovaBot"
+            "https://github.com/Alma1314/NovaBot"
         )
         self.client._custom_headers["X-OpenRouter-Title"] = "NovaBot"  # type: ignore
         self.client._custom_headers["X-OpenRouter-Categories"] = (

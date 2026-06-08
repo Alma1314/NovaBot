@@ -18,7 +18,7 @@ concurrency:
 
 jobs:
   sync:
-    if: github.repository == 'NovaBotDevs/NovaBot'
+    if: github.repository == 'Alma1314/NovaBot'
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -50,7 +50,7 @@ jobs:
           WIKI_TOKEN: ${{ secrets.NOVABOT_WIKI_TOKEN }}
         run: |
           test -n "$WIKI_TOKEN"
-          git clone "https://x-access-token:${WIKI_TOKEN}@github.com/NovaBotDevs/NovaBot.wiki.git" wiki
+          git clone "https://x-access-token:${WIKI_TOKEN}@github.com/Alma1314/NovaBot.wiki.git" wiki
 
       - name: Generate wiki pages
         run: python docs/scripts/sync_docs_to_wiki.py --source-root docs --wiki-root wiki

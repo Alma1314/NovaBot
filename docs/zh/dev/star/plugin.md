@@ -33,7 +33,7 @@ outline: deep
 Clone NovaBot 项目本体和刚刚创建的插件仓库到本地。
 
 ```bash
-git clone https://github.com/NovaBotDevs/NovaBot
+git clone https://github.com/Alma1314/NovaBot
 mkdir -p NovaBot/data/plugins
 cd NovaBot/data/plugins
 git clone 插件仓库地址

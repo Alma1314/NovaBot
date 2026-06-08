@@ -81,7 +81,7 @@ dev = [
 novabot = "novabot.cli.__main__:cli"
 
 [project.urls]
-Repository = "https://github.com/NovaBotDevs/NovaBot"
+Repository = "https://github.com/Alma1314/NovaBot"
 
 [tool.ruff]
 exclude = ["novabot/core/utils/t2i/local_strategy.py", "novabot/api/all.py", "tests"]

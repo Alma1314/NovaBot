@@ -12,7 +12,7 @@ This documentation may not cover all features comprehensively. If you have any q
 
 Welcome to submit Issues or Pull Requests:
 
-- [NovaBotDevs/NovaBot](https://github.com/NovaBotDevs/NovaBot)
+- [Alma1314/NovaBot](https://github.com/Alma1314/NovaBot)
 
 ### Tencent QQ Groups
 

@@ -4,7 +4,7 @@
 
 ### 当管理面板打开时遇到 404 错误
 
-在 [release](https://github.com/NovaBotDevs/NovaBot/releases) 页面下载 `NovaBot-vxxxxx-dashboard.zip`，解压拖到 `NovaBot/data` 下。还不行请重启电脑（来自群里的反馈）
+在 [release](https://github.com/Alma1314/NovaBot/releases) 页面下载 `NovaBot-vxxxxx-dashboard.zip`，解压拖到 `NovaBot/data` 下。还不行请重启电脑（来自群里的反馈）
 
 
 ### 首次登录的默认账号和随机密码
@@ -122,7 +122,7 @@ Set dashboard.host in data/cmd_config.json to enable remote access.
 
 ### 本地渲染 Markdown 图片（t2i）时中文乱码
 
-可以自定义字体。详见 -> [#957](https://github.com/NovaBotDevs/NovaBot/issues/957#issuecomment-2749981802)
+可以自定义字体。详见 -> [#957](https://github.com/Alma1314/NovaBot/issues/957#issuecomment-2749981802)
 
 推荐 [Maple Mono](https://github.com/subframe7536/maple-font) 字体。
 

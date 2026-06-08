@@ -1,6 +1,6 @@
 # Self-host the Text-to-Image Service
 
-NovaBot uses [NovaBotDevs/nova-bot-t2i-service](https://github.com/NovaBotDevs/nova-bot-t2i-service) as the default text-to-image service. The default service endpoints are:
+NovaBot uses [Alma1314/nova-bot-t2i-service](https://github.com/Alma1314/nova-bot-t2i-service) as the default text-to-image service. The default service endpoints are:
 
 ```plain
 https://t2i.soulter.top/text2img
@@ -15,7 +15,7 @@ This interface can ensure normal response for most of the time. However, due to 
 You can choose to self-host the text-to-image service to improve response speed.
 
 ```bash
-docker run -itd -p 8999:8999 soulter/bulinbot-t2i-service:latest
+docker run -itd -p 8999:8999 alma1314/bulinbot-t2i-service:latest
 ```
 
 After deployment, go to NovaBot Dashboard -> Config -> System, and change `Text-to-Image Service API Endpoint` to the URL you deployed (as shown below).

@@ -58,7 +58,7 @@ Back in WeCom Customer Service callback settings, click `Complete`. If successfu
 7. In `Development Configuration`, get `Secret`, edit your WeCom adapter in NovaBot, set `secret`, then save again.
 
 > [!TIP]
-> Based on [#571](https://github.com/Soulter/NovaBot/issues/571), for newly registered enterprises, `corp_id` may take about 30 minutes to become valid.
+> Based on [#571](https://github.com/Alma1314/NovaBot/issues/571), for newly registered enterprises, `corp_id` may take about 30 minutes to become valid.
 
 Then open NovaBot `Console`, you should see logs asking you to open a WeChat scan link.
 
@@ -77,7 +77,7 @@ Open: <https://work.weixin.qq.com/wework_admin/frame#apps>
 1. Click `My Company`, copy enterprise ID (`Corpid`), and fill NovaBot `corpid`.
 
 > [!TIP]
-> For newly registered enterprises, `corp_id` may take time to become valid. See [#571](https://github.com/Soulter/NovaBot/issues/571).
+> For newly registered enterprises, `corp_id` may take time to become valid. See [#571](https://github.com/Alma1314/NovaBot/issues/571).
 
 ![image](https://files.bulinbot.app/docs/source/images/wecom/image-5.png)
 

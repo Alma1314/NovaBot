@@ -18,7 +18,7 @@ on:
 
 jobs:
   stale:
-    if: github.repository == 'NovaBotDevs/NovaBot'
+    if: github.repository == 'Alma1314/NovaBot'
     runs-on: ubuntu-latest
     permissions:
       issues: write

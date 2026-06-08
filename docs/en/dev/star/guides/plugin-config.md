@@ -134,7 +134,7 @@ Used to visualize editing a Python `dict` type configuration. For example, NovaB
 ### `template_list` type schema
 
 > [!NOTE]
-> Introduced in v4.10.4. For more details see: [#4208](https://github.com/NovaBotDevs/NovaBot/pull/4208)
+> Introduced in v4.10.4. For more details see: [#4208](https://github.com/Alma1314/NovaBot/pull/4208)
 
 Plugin developers can add a template-style configuration to `_conf_schema` in the following format (somewhat similar to nested configs):
 

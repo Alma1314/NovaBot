@@ -28,7 +28,7 @@ Welcome to the NovaBot Plugin Development Guide! This section will guide you thr
 Clone both the NovaBot main project and the plugin repository you just created to your local machine.
 
 ```bash
-git clone https://github.com/NovaBotDevs/NovaBot
+git clone https://github.com/Alma1314/NovaBot
 mkdir -p NovaBot/data/plugins
 cd NovaBot/data/plugins
 git clone <your-plugin-repository-url>

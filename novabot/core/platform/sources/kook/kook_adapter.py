@@ -221,7 +221,7 @@ class KookPlatformAdapter(Platform):
         # 且角色本身也有一个自己的id,与正常用户id不同
         # 而在频道中是可以`@`角色的,而想要知道bot是否属于某个角色
         # 需要通过 `/user/view` 接口获取当前bot账号的某个频道下所属角色的id
-        # 为了解决 https://github.com/NovaBotDevs/NovaBot/issues/7539
+        # 为了解决 https://github.com/Alma1314/NovaBot/issues/7539
         # 在确定机器人需要响应某个`(rol)xxx(rol)`时,需要将角色id替换装当前的bot id
         # 包装成`At`机器人自己,而`At`的name就保留角色名称
         # 如果没有查询到角色id或者bot不属于某类角色, 则不处理此`(rol)xxx(rol)`

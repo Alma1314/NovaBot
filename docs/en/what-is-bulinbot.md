@@ -25,5 +25,5 @@ This documentation is divided into the following sections:
 
 ## Notice
 
-1. NovaBot is a non-profit project under the NovaBotDevs organization, maintained by open-source contributors worldwide, and protected by the [AGPL-v3](https://www.chinasona.org/gnu/agpl-3.0-cn.html) license. If you modify NovaBot and use it to provide commercial network services, you must open-source your modifications. For details, contact [community@nova-bot.app](mailto:community@nova-bot.app).
-2. Before using this project, please read the End User License Agreement (EULA): [End User License Agreement](https://github.com/NovaBotDevs/NovaBot/blob/master/EULA.md). If you do not agree to any terms of the agreement, do not use this project.
+1. NovaBot is an open-source project under the Alma1314 organization, maintained by open-source contributors worldwide, and protected by the [AGPL-v3](https://www.chinasona.org/gnu/agpl-3.0-cn.html) license. If you modify NovaBot and use it to provide commercial network services, you must open-source your modifications. For details, contact [community@nova-bot.app](mailto:community@nova-bot.app).
+2. Before using this project, please read the End User License Agreement (EULA): [End User License Agreement](https://github.com/Alma1314/NovaBot/blob/master/EULA.md). If you do not agree to any terms of the agreement, do not use this project.

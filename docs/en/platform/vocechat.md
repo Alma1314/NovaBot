@@ -41,4 +41,4 @@ After configuration, click Save and test in VoceChat.
 If needed, report issues to:
 
 - Plugin repo: <https://github.com/HikariFroya/nova-bot_plugin_vocechat/issues>
-- NovaBot repo: <https://github.com/NovaBotDevs/NovaBot/issues/new?template=bug-report.yml>
+- NovaBot repo: <https://github.com/Alma1314/NovaBot/issues/new?template=bug-report.yml>

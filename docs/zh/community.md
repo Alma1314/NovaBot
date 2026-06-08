@@ -35,7 +35,7 @@ https://discord.gg/hAVk6tgV36
 
 欢迎提交 Issue 或 Pull Request：
 
-- [NovaBotDevs/NovaBot](https://github.com/NovaBotDevs/NovaBot)
+- [Alma1314/NovaBot](https://github.com/Alma1314/NovaBot)
 
 ## 成为 NovaBot 组织成员
 

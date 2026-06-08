@@ -27,11 +27,11 @@ class PlatformMetadata:
     i18n_resources: dict[str, dict] | None = None
     """国际化资源数据，如 {"zh-CN": {...}, "en-US": {...}}
 
-    参考 https://github.com/NovaBotDevs/NovaBot/pull/5045
+    参考 https://github.com/Alma1314/NovaBot/pull/5045
     """
 
     config_metadata: dict | None = None
     """配置项元数据，用于 WebUI 生成表单。对应 config_metadata.json 的内容
 
-    参考 https://github.com/NovaBotDevs/NovaBot/pull/5045
+    参考 https://github.com/Alma1314/NovaBot/pull/5045
     """

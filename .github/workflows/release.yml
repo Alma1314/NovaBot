@@ -18,7 +18,7 @@ permissions:
   contents: write
 
 jobs:
-    if: github.repository == 'NovaBotDevs/NovaBot'
+    if: github.repository == 'Alma1314/NovaBot'
     runs-on: ubuntu-24.04
     env:
       R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
@@ -85,7 +85,7 @@ jobs:
 
   publish-release:
     name: Publish GitHub Release
-    if: github.repository == 'NovaBotDevs/NovaBot'
+    if: github.repository == 'Alma1314/NovaBot'
     runs-on: ubuntu-24.04
     needs:
     steps:
@@ -162,7 +162,7 @@ jobs:
 
   publish-pypi:
     name: Publish PyPI
-    if: github.repository == 'NovaBotDevs/NovaBot'
+    if: github.repository == 'Alma1314/NovaBot'
     runs-on: ubuntu-24.04
     needs:
       - publish-release

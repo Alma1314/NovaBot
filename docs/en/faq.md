@@ -4,7 +4,7 @@
 
 ### Encountering 404 Error When Opening the Dashboard
 
-Download `NovaBot-vxxxxx-dashboard.zip` from the [release](https://github.com/NovaBotDevs/NovaBot/releases) page, extract it, and move it to `NovaBot/data`. If it still doesn't work, try restarting your computer (based on community feedback).
+Download `NovaBot-vxxxxx-dashboard.zip` from the [release](https://github.com/Alma1314/NovaBot/releases) page, extract it, and move it to `NovaBot/data`. If it still doesn't work, try restarting your computer (based on community feedback).
 
 ### First Login Account and Random Password
 
@@ -104,7 +104,7 @@ After restart, NovaBot will reload or download WebUI files that match the curren
 
 ### Chinese Characters Garbled When Locally Rendering Markdown Images (t2i)
 
-You can customize the font. See details -> [#957](https://github.com/NovaBotDevs/NovaBot/issues/957#issuecomment-2749981802)
+You can customize the font. See details -> [#957](https://github.com/Alma1314/NovaBot/issues/957#issuecomment-2749981802)
 
 Recommended font: [Maple Mono](https://github.com/subframe7536/maple-font).
 

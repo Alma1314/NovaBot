@@ -129,7 +129,7 @@ class SendMessageToUserTool(FunctionTool[NovaAgentContext]):
     ) -> ToolExecResult:
         # Security: only NovaBot admins can send messages to other sessions.
         # Non-admin users are always restricted to their own session.
-        # See https://github.com/NovaBotDevs/NovaBot/issues/7822
+        # See https://github.com/Alma1314/NovaBot/issues/7822
         current_session = context.context.event.unified_msg_origin
         session = kwargs.get("session") or current_session
         if session != current_session:
@@ -238,7 +238,7 @@ class SendMessageToUserTool(FunctionTool[NovaAgentContext]):
             # current_session才是完整的三段式session字符串。
             # 仅当传入字符串不含 ':'（明显是裸 session_id）时才用 current_session 补全，
             # 避免 LLM 传了带 ':' 但格式错误的目标 session 被错误修复。
-            # issue: https://github.com/NovaBotDevs/NovaBot/issues/7907
+            # issue: https://github.com/Alma1314/NovaBot/issues/7907
             if isinstance(session, str) and current_session and ":" not in session:
                 try:
                     cur = MessageSession.from_str(current_session)

@@ -387,7 +387,7 @@ async def test_download_from_repo_url_uses_httpx_stream_for_zip_download(
     target_path = tmp_path / "NovaBot"
     await RepoZipUpdator().download_from_repo_url(
         str(target_path),
-        "https://github.com/NovaBotDevs/NovaBot",
+        "https://github.com/Alma1314/NovaBot",
     )
 
     assert (tmp_path / "NovaBot.zip").read_bytes() == b"zip-data"
@@ -514,8 +514,8 @@ async def test_download_file_logs_url_and_target_path_on_failure(
 @pytest.mark.parametrize(
     "archive_root",
     [
-        "NovaBotDevs-NovaBot-39386ee/",
-        "NovaBotDevs-NovaBot-39386ee",
+        "Alma1314-NovaBot-39386ee/",
+        "Alma1314-NovaBot-39386ee",
         "owner-repo-branch/subdir/",
         ".",
     ],
@@ -545,8 +545,8 @@ def test_repo_unzip_file_normalizes_windows_extended_length_paths(
 @pytest.mark.parametrize(
     "archive_root",
     [
-        "NovaBotDevs-demo-39386ee/",
-        "NovaBotDevs-demo-39386ee",
+        "Alma1314-demo-39386ee/",
+        "Alma1314-demo-39386ee",
         "owner-repo-branch/subdir/",
         ".",
     ],

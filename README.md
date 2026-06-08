@@ -15,7 +15,7 @@
 需要安装uv。
 ```bash
 # 克隆仓库
-git clone https://github.com/NovaBotDevs/NovaBot.git
+git clone https://github.com/Alma1314/NovaBot.git
 cd NovaBot
 
 # 安装依赖

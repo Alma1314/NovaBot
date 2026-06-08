@@ -39,7 +39,7 @@ jobs:
           pytest --cov=novabot -v -o log_cli=true -o log_level=DEBUG
 
       - name: Upload results to Codecov
-        if: github.repository == 'NovaBotDevs/NovaBot'
+        if: github.repository == 'Alma1314/NovaBot'
         uses: codecov/codecov-action@v6
         with:
           token: ${{ secrets.CODECOV_TOKEN }}

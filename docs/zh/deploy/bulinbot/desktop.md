@@ -6,7 +6,7 @@
 
 相比命令行或容器方案，桌面客户端更偏向「开箱即用」体验，适合希望少折腾环境、直接开始使用的用户。
 
-仓库地址：[NovaBotDevs/NovaBot-desktop](https://github.com/NovaBotDevs/NovaBot-desktop)
+仓库地址：[Alma1314/NovaBot-desktop](https://github.com/Alma1314/NovaBot-desktop)
 
 ## 适合谁
 
@@ -22,7 +22,7 @@
 
 ## 下载并安装
 
-1. 打开 [NovaBot-desktop Releases](https://github.com/NovaBotDevs/NovaBot-desktop/releases)。
+1. 打开 [NovaBot-desktop Releases](https://github.com/Alma1314/NovaBot-desktop/releases)。
 2. 下载与你系统对应的安装包（如 `.exe`、`.dmg`、`.rpm`、`.deb`）。
 3. 安装完成后启动桌面客户端，按向导完成初始化。
 

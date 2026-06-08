@@ -15,7 +15,7 @@ from novabot.core.utils.requirements_utils import MissingRequirementsPlan
 # --- Test Data & Helpers ---
 
 TEST_PLUGIN_NAME = "helloworld"
-TEST_PLUGIN_REPO = "https://github.com/NovaBotDevs/novabot_plugin_helloworld"
+TEST_PLUGIN_REPO = "https://github.com/Alma1314/novabot_plugin_helloworld"
 TEST_PLUGIN_DIR = "helloworld"
 
 

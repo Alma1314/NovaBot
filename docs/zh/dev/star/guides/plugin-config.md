@@ -134,7 +134,7 @@ NovaBot 提供了“强大”的配置解析和可视化功能。能够让用户
 ### template_list 类型的 schema
 
 > [!NOTE]
-> v4.10.4 引入。更多信息请查看：[#4208](https://github.com/NovaBotDevs/NovaBot/pull/4208)
+> v4.10.4 引入。更多信息请查看：[#4208](https://github.com/Alma1314/NovaBot/pull/4208)
 
 插件开发者可以在_conf_schema中按照以下格式添加模板配置项（有点类似于原有的嵌套配置）
 

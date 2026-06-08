@@ -1,7 +1,7 @@
 # Agent Sandbox Environment ⛵️
 
 > [!TIP]
-> This feature is currently in technical preview and may have some bugs. If you encounter any issues, please submit an issue on [GitHub](https://github.com/NovaBotDevs/NovaBot/issues).
+> This feature is currently in technical preview and may have some bugs. If you encounter any issues, please submit an issue on [GitHub](https://github.com/Alma1314/NovaBot/issues).
 
 Starting from version `v4.12.0`, NovaBot introduced the Agent sandbox environment to replace the previous code executor functionality. The sandbox environment provides Agents with safer and more flexible code execution and automation capabilities.
 
@@ -47,7 +47,7 @@ The reason is that `Shipyard Neo` can become fairly resource-heavy when browser 
 A basic deployment flow looks like this:
 
 ```bash
-git clone https://github.com/NovaBotDevs/shipyard-neo
+git clone https://github.com/Alma1314/shipyard-neo
 cd shipyard-neo/deploy/docker
 # Modify the key settings in config.yaml, such as security.api_key
 docker compose up -d
@@ -62,7 +62,7 @@ After deployment:
 
 ### Reference: Full `config.yaml` Example (with Notes)
 
-If you want to customize the deployment parameters of `Shipyard Neo`, you can refer to the complete example below, adapted from [`deploy/docker/config.yaml`](https://github.com/NovaBotDevs/shipyard-neo/blob/main/deploy/docker/config.yaml). It keeps the default structure and adds explanatory notes to make each option easier to understand.
+If you want to customize the deployment parameters of `Shipyard Neo`, you can refer to the complete example below, adapted from [`deploy/docker/config.yaml`](https://github.com/Alma1314/shipyard-neo/blob/main/deploy/docker/config.yaml). It keeps the default structure and adds explanatory notes to make each option easier to understand.
 
 > [!TIP]
 > The minimum required change is `security.api_key`. If you are not sure what the other options do, it is usually best to keep the defaults first and only adjust profiles, resource limits, and warm pool settings as needed.
@@ -278,11 +278,11 @@ The following content describes the older `Shipyard` driver. It is kept for comp
 If you have not deployed NovaBot yet, or want to use the older recommended deployment method with sandbox support, you can still deploy NovaBot with Docker Compose using the following commands:
 
 ```bash
-git clone https://github.com/NovaBotDevs/NovaBot
+git clone https://github.com/Alma1314/NovaBot
 cd NovaBot
 # Modify the environment variables in compose-with-shipyard.yml, such as the Shipyard access token
 docker compose -f compose-with-shipyard.yml up -d
-docker pull soulter/shipyard-ship:latest
+docker pull alma1314/shipyard-ship:latest
 ```
 
 This starts a Docker Compose stack containing the NovaBot main program and the sandbox environment.
@@ -294,10 +294,10 @@ If NovaBot is already deployed but the sandbox environment is not, you can deplo
 ```bash
 mkdir nova-bot-shipyard
 cd nova-bot-shipyard
-wget https://raw.githubusercontent.com/NovaBotDevs/shipyard/refs/heads/main/pkgs/bay/docker-compose.yml -O docker-compose.yml
+wget https://raw.githubusercontent.com/Alma1314/shipyard/refs/heads/main/pkgs/bay/docker-compose.yml -O docker-compose.yml
 # Modify the environment variables in docker-compose.yml, such as the Shipyard access token
 docker compose -f docker-compose.yml up -d
-docker pull soulter/shipyard-ship:latest
+docker pull alma1314/shipyard-ship:latest
 ```
 
 After successful deployment, Shipyard listens on `http://<your-host>:8156` by default.

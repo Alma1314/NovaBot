@@ -230,7 +230,7 @@ class QQOfficialPlatformAdapter(Platform):
         ):
             return
 
-        # 私聊主动推送不需要 msg_id，见 https://github.com/NovaBotDevs/NovaBot/issues/7904
+        # 私聊主动推送不需要 msg_id，见 https://github.com/Alma1314/NovaBot/issues/7904
         msg_id = self._session_last_message_id.get(session.session_id)
         if not msg_id and session.message_type != MessageType.FRIEND_MESSAGE:
             logger.warning(

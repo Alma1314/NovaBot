@@ -743,7 +743,7 @@ class ProviderOpenAIOfficial(Provider):
                 llm_response.usage = self._extract_usage(chunk.usage)
             elif choice and (choice_usage := getattr(choice, "usage", None)):
                 # Workaround for some providers that only return usage in choices[].usage, e.g. MoonshotAI
-                # See https://github.com/NovaBotDevs/NovaBot/issues/6614
+                # See https://github.com/Alma1314/NovaBot/issues/6614
                 llm_response.usage = self._extract_usage(choice_usage)
                 state.current_completion_snapshot.usage = choice_usage
             if _y:

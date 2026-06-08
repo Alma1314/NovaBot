@@ -1,7 +1,7 @@
 # Agent 沙盒环境 ⛵️
 
 > [!TIP]
-> 此功能目前处于技术预览阶段，可能会存在一些 Bug。如果您遇到了问题，请在 [GitHub](https://github.com/NovaBotDevs/NovaBot/issues) 上提交 issue。
+> 此功能目前处于技术预览阶段，可能会存在一些 Bug。如果您遇到了问题，请在 [GitHub](https://github.com/Alma1314/NovaBot/issues) 上提交 issue。
 
 在 `v4.12.0` 版本及之后，NovaBot 引入了 Agent 沙盒环境，以替代之前的代码执行器功能。沙盒环境给 Agent 提供了更安全、更灵活的代码执行和自动化操作能力。
 
@@ -151,7 +151,7 @@ NovaBot 给每个沙盒环境限制最高 1 CPU 和 512 MB 内存。
 大致步骤如下：
 
 ```bash
-git clone https://github.com/NovaBotDevs/shipyard-neo
+git clone https://github.com/Alma1314/shipyard-neo
 cd shipyard-neo/deploy/docker
 # 修改 config.yaml 中的关键配置，例如 security.api_key
 docker compose up -d
@@ -166,7 +166,7 @@ docker compose up -d
 
 ### 参考：`config.yaml` 完整示例（附说明）
 
-如果您准备自行调整 `Shipyard Neo` 的部署参数，可以直接参考下面这份基于 [`deploy/docker/config.yaml`](https://github.com/NovaBotDevs/shipyard-neo/blob/main/deploy/docker/config.yaml) 整理的完整示例。它保留了默认结构，并额外加上了中文注释，便于理解每个配置项的用途。
+如果您准备自行调整 `Shipyard Neo` 的部署参数，可以直接参考下面这份基于 [`deploy/docker/config.yaml`](https://github.com/Alma1314/shipyard-neo/blob/main/deploy/docker/config.yaml) 整理的完整示例。它保留了默认结构，并额外加上了中文注释，便于理解每个配置项的用途。
 
 > [!TIP]
 > 其中最少需要修改的是 `security.api_key`。如果不清楚其他参数的作用，建议先保持默认值，仅按需调整 profile、资源限制和 warm pool 配置。
@@ -381,11 +381,11 @@ gc:
 如果您还没有部署 NovaBot，或者想更换为我们推荐的带沙盒环境的部署方式，推荐使用 Docker Compose 来部署 NovaBot，代码如下：
 
 ```bash
-git clone https://github.com/NovaBotDevs/NovaBot
+git clone https://github.com/Alma1314/NovaBot
 cd NovaBot
 # 修改 compose-with-shipyard.yml 文件中的环境变量配置，例如 Shipyard 的 access token 等
 docker compose -f compose-with-shipyard.yml up -d
-docker pull soulter/shipyard-ship:latest
+docker pull alma1314/shipyard-ship:latest
 ```
 
 这会启动一个包含 NovaBot 主程序和沙盒环境的 Docker Compose 服务。
@@ -399,10 +399,10 @@ docker pull soulter/shipyard-ship:latest
 ```bash
 mkdir nova-bot-shipyard
 cd nova-bot-shipyard
-wget https://raw.githubusercontent.com/NovaBotDevs/shipyard/refs/heads/main/pkgs/bay/docker-compose.yml -O docker-compose.yml
+wget https://raw.githubusercontent.com/Alma1314/shipyard/refs/heads/main/pkgs/bay/docker-compose.yml -O docker-compose.yml
 # 修改 compose-with-shipyard.yml 文件中的环境变量配置，例如 Shipyard 的 access token 等
 docker compose -f docker-compose.yml up -d
-docker pull soulter/shipyard-ship:latest
+docker pull alma1314/shipyard-ship:latest
 ```
 
 部署成功后，上述命令会启动一个 Shipyard 服务，默认监听在 `http://<your-host>:8156`。

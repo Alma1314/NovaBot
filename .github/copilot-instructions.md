@@ -49,7 +49,7 @@ Always reference these instructions first and fallback to search or bash command
 - Pre-commit hooks enforce ruff formatting and linting
 
 ## Docker Support
-- Primary deployment method: `docker run soulter/novabot:latest`
+- Primary deployment method: `docker run alma1314/novabot:latest`
 - Compose file available: `compose.yml`
 - Exposes ports: 6185 (WebUI), 6195 (WeChat), 6199 (QQ), etc.
 - Volume mount required: `./data:/NovaBot/data`

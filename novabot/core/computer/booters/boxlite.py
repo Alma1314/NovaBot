@@ -136,7 +136,7 @@ class BoxliteBooter(ComputerBooter):
         )
         random_port = random.randint(20000, 30000)
         self.box = boxlite.SimpleBox(
-            image="soulter/shipyard-ship",
+            image="alma1314/shipyard-ship",
             memory_mib=512,
             cpus=1,
             ports=[

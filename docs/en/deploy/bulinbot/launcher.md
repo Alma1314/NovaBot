@@ -4,8 +4,8 @@
 
 NovaBot One-Click Launcher supports Windows, macOS, and Linux.
 
-0. Open [NovaBotDevs/nova-bot-launcher](https://github.com/NovaBotDevs/nova-bot-launcher)
-1. **Optional but recommended**: give this project a [**Star ⭐**](https://github.com/NovaBotDevs/nova-bot-launcher). Your support helps maintainers keep improving it.
+0. Open [Alma1314/nova-bot-launcher](https://github.com/Alma1314/nova-bot-launcher)
+1. **Optional but recommended**: give this project a [**Star ⭐**](https://github.com/Alma1314/nova-bot-launcher). Your support helps maintainers keep improving it.
 2. Find **Releases** on the right, open the latest release, then download the installer for your system from **Assets**.
 
 For example:
@@ -35,7 +35,7 @@ The legacy installer is a `PowerShell` script, very small (<20KB). It requires `
 
 ## Download the Legacy Installer
 
-Open <https://github.com/NovaBotDevs/NovaBotLauncher/releases/latest>
+Open <https://github.com/Alma1314/NovaBotLauncher/releases/latest>
 
 Download `Source code (zip)` and extract it.
 
@@ -57,7 +57,7 @@ Drag `launcher_nova-bot_en.bat` into the PowerShell window and press Enter.
 
 If Python is not detected, the script exits with a prompt.
 
-The script checks whether an `NovaBot` folder exists. If not, it downloads the latest NovaBot source from [GitHub](https://github.com/NovaBotDevs/NovaBot/releases/latest), installs dependencies, and runs it automatically.
+The script checks whether an `NovaBot` folder exists. If not, it downloads the latest NovaBot source from [GitHub](https://github.com/Alma1314/NovaBot/releases/latest), installs dependencies, and runs it automatically.
 
 ## Done
 
@@ -69,7 +69,7 @@ Without errors, you should see a log like `🌈 Management panel started, access
 > First-time logins use the random password generated on startup and printed to logs. Use that password (and the username shown in the logs, usually `nova-bot`) to log in, then change it immediately.
 >
 > If WebUI returns 404:
-> Download `dist.zip` from [release](https://github.com/NovaBotDevs/NovaBot/releases), extract it into `NovaBot/data`, then restart the computer if needed.
+> Download `dist.zip` from [release](https://github.com/Alma1314/NovaBot/releases), extract it into `NovaBot/data`, then restart the computer if needed.
 
 Then deploy at least one messaging platform adapter to start using NovaBot in IM apps.
 

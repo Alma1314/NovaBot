@@ -100,7 +100,7 @@ NovaBot 的指令通过插件机制注册。为了保持主程序轻量，当前
 
 除上述基础指令外，其他原本随主程序提供的内置指令已经迁移到独立插件：
 
-- [builtin_commands_extension](https://github.com/NovaBotDevs/builtin_commands_extension)
+- [builtin_commands_extension](https://github.com/Alma1314/builtin_commands_extension)
 
 可直接在插件市场搜索安装。
 

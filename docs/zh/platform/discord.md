@@ -71,4 +71,4 @@ Discord 支持预回应表情功能。启用后，机器人在处理消息时会
 
 - 如果卡在最后的步骤，机器人不在线请确定自己的服务器可以直接连接discord
 
-如果有疑问，请[提交 Issue](https://github.com/NovaBotDevs/NovaBot/issues)。
+如果有疑问，请[提交 Issue](https://github.com/Alma1314/NovaBot/issues)。

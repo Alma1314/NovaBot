@@ -177,7 +177,7 @@ class NovaBotUpdator(RepoZipUpdator):
         else:
             if len(str(version)) != 40:
                 raise Exception("commit hash 长度不正确，应为 40")
-            file_url = f"https://github.com/NovaBotDevs/NovaBot/archive/{version}.zip"
+            file_url = f"https://github.com/Alma1314/NovaBot/archive/{version}.zip"
         logger.info(f"准备更新至指定版本的 NovaBot Core: {version}")
 
         if proxy:
