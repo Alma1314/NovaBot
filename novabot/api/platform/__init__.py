@@ -1,4 +1,4 @@
-from novabot.core.message.components import *
+from novabot.core.message.components import *  # noqa: F403
 from novabot.core.platform import (
     NovaBotMessage,
     NovaMessageEvent,

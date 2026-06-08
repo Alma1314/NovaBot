@@ -2,7 +2,6 @@ import base64
 import inspect
 import logging
 import os
-import re
 import shutil
 import socket
 import ssl
@@ -15,7 +14,7 @@ import certifi
 import psutil
 from PIL import Image
 
-from .novabot_path import get_novabot_data_path, get_novabot_path, get_novabot_temp_path
+from .novabot_path import get_novabot_temp_path
 
 logger = logging.getLogger("novabot")
 

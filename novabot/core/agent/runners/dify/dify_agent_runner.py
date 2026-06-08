@@ -1,6 +1,5 @@
 import base64
 import os
-import sys
 import typing as T
 
 import novabot.core.message.components as Comp

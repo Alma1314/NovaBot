@@ -12,18 +12,25 @@ from aiocqhttp.exceptions import ActionFailed
 
 from novabot.api import logger
 from novabot.api.event import MessageChain
-from novabot.api.message_components import *
+from novabot.api.message_components import (
+    At,
+    ComponentTypes,
+    File,
+    Plain,
+    Poke,
+    Reply,
+)
 from novabot.api.platform import (
-    NovaBotMessage,
+    Group,
     MessageMember,
     MessageType,
+    NovaBotMessage,
     Platform,
     PlatformMetadata,
 )
 from novabot.core.platform.nova_message_event import MessageSesion
 
 from ...register import register_platform_adapter
-from .aiocqhttp_message_event import *
 from .aiocqhttp_message_event import AiocqhttpMessageEvent
 
 

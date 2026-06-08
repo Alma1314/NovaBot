@@ -2,7 +2,6 @@ import aiohttp
 
 from novabot.api import star
 from novabot.api.event import NovaMessageEvent, MessageEventResult
-from novabot.core.config.default import VERSION
 from novabot.core.star import command_management
 
 

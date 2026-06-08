@@ -1,6 +1,5 @@
 import asyncio
 import os
-import sys
 import time
 from collections.abc import Callable, Coroutine
 from typing import Any, cast

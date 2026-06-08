@@ -1,6 +1,5 @@
 import asyncio
 import copy
-import sys
 import time
 import traceback
 import typing as T

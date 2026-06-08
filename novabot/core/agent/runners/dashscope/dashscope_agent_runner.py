@@ -2,7 +2,6 @@ import asyncio
 import functools
 import queue
 import re
-import sys
 import threading
 import typing as T
 

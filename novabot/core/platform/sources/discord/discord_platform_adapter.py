@@ -1,6 +1,5 @@
 import asyncio
 import re
-import sys
 from typing import Any, cast
 
 import discord

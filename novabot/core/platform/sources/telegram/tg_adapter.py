@@ -1,7 +1,6 @@
 import asyncio
 import os
 import re
-import sys
 import uuid
 from contextlib import suppress
 from typing import cast

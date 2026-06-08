@@ -1,7 +1,6 @@
 import asyncio
 import hashlib
 import json
-import sys
 import typing as T
 from collections import deque
 from dataclasses import dataclass, field

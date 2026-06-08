@@ -11,7 +11,12 @@ from slack_sdk.web.async_client import AsyncWebClient
 
 from novabot.api import logger
 from novabot.api.event import MessageChain
-from novabot.api.message_components import *
+from novabot.api.message_components import (
+    At,
+    File,
+    Image,
+    Plain,
+)
 from novabot.api.platform import (
     NovaBotMessage,
     MessageMember,
